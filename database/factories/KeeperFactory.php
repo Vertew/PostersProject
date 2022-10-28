@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Enclosure>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Keeper>
  */
-class EnclosureFactory extends Factory
+class KeeperFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,7 +17,7 @@ class EnclosureFactory extends Factory
     public function definition()
     {
         return [
-            'name' => fake()->streetName()
+            'name' => fake()->name()
         ];
     }
 }

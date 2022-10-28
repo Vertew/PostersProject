@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Animal;
+use App\Models\Enclosure;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -27,7 +28,6 @@ class AnimalTableSeeder extends Seeder
         $animal->enclosure_id = 1;
         $animal->save();
 
-        Animal::factory()->count(50)->create();
-
+        //Animal::factory()->has(\App\Models\EmergencyContact::factory())->count(10)->create();
     }
 }

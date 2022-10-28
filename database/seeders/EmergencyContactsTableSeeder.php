@@ -20,5 +20,9 @@ class EmergencyContactsTableSeeder extends Seeder
         $contact->phone_number = '914-124-0943';
         $contact->animal_id = '1';
         $contact->save();
+
+        EmergencyContact::factory()->count(50)->create();
+
+
     }
 }

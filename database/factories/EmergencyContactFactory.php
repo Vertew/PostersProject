@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Animal>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\EmergencyContact>
  */
-class AnimalFactory extends Factory
+class EmergencyContactFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,10 +17,10 @@ class AnimalFactory extends Factory
     public function definition()
     {
         return [
+
             'name' => fake()->name(),
-            'weight' => fake()->randomFloat(2,300,500),
-            'DoB' => fake()->date(),
-            'enclosure_id' => fake()->numberBetween(1,6) ,
+            'phone_number' => fake()->e164PhoneNumber(),
+            'animal_id' => fake()->unique()->numberBetween(2,52),
         ];
     }
 }

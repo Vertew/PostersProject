@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Keeper;
+use App\Models\Animal;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -20,6 +21,10 @@ class KeepersTableSeeder extends Seeder
         $keeper->save();
 
         $keeper->animals()->attach(1);
-        $keeper->animals()->attach(12);
+
+        Keeper::factory()->has(Animal::factory()->count(2))->count(5)->create();
+
+        
+
     }
 }

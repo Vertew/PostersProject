@@ -19,8 +19,7 @@ class EnclosuresTableSeeder extends Seeder
         $enclosure->name = 'Enclosure One';
         $enclosure->save();
 
-        
-
+        Enclosure::factory()->has(\App\Models\Animal::factory()->count(10))->count(5)->create();
 
     }
 }

@@ -17,14 +17,13 @@ return new class extends Migration
             $table->primary(['animal_id','keeper_id']);
             $table->bigInteger('animal_id')->unsigned();
             $table->bigInteger('keeper_id')->unsigned();
+            $table->timestamps();
 
             $table->foreign('animal_id')->references('id')->on('animals')
                   ->onDelete('cascade')->onUpdate('cascade');
 
             $table->foreign('keeper_id')->references('id')->on('keepers')
                   ->onDelete('cascade')->onUpdate('cascade');
-
-            $table->timestamps();
 
         });
     }
