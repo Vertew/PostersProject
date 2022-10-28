@@ -13,4 +13,12 @@ class Animal extends Model
         return $this->hasOne(EmergencyContact::class);
     }
 
+    public function enclosure(){
+        return $this->belongsTo(Enclosure::class);
+    }
+
+    public function keepers(){
+        return $this->belongsToMany(Keeper::class);
+    }
+
 }

@@ -20,6 +20,7 @@ class AnimalFactory extends Factory
             'name' => fake()->name(),
             'weight' => fake()->randomFloat(2,300,500),
             'DoB' => fake()->date(),
+            'enclosure_id' => 1,
         ];
     }
 }

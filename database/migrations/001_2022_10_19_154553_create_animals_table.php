@@ -18,6 +18,11 @@ return new class extends Migration
             $table->string('name');
             $table->double('weight',8,2);
             $table->dateTime('DoB')->nullable();
+            $table->bigInteger('enclosure_id')->unsigned();
+
+            $table->foreign('enclosure_id')->references('id')->on('enclosures')
+                  ->onDelete('cascade')->onUpdate('cascade');
+
             $table->timestamps();
         });
     }
