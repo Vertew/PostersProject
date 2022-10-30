@@ -21,10 +21,9 @@ class KeepersTableSeeder extends Seeder
         $keeper->save();
 
         $keeper->animals()->attach(1);
+        $keeper->animals()->attach(2);
 
-        Keeper::factory()->has(Animal::factory()->count(2))->count(5)->create();
-
-        
-
+        $animals = Animal::factory()->count(5)->create();
+        Keeper::factory()->hasAttached($animals)->count(5)->create();
     }
 }
