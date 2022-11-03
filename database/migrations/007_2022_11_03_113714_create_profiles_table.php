@@ -19,10 +19,15 @@ return new class extends Migration
         Schema::create('profiles', function (Blueprint $table) {
             $table->id();
             $table->string('name')->nullable();
-            $table->dateTime('DoB')->nullable();
+            $table->date('DoB')->nullable();
             $table->string('status')->nullable();
             $table->string('location')->nullable();
             $table->string('profile_picture')->default('default/profile/image');
+            $table->bigInteger('user_id')->unsigned()->unique();
+
+            $table->foreign('user_id')->references('id')->on('users')
+                  ->onDelete('cascade')->onUpdate('cascade');
+
             $table->timestamps();
         });
     }

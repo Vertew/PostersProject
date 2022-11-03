@@ -13,19 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('comments', function (Blueprint $table) {
-            $table->id();
-            $table->text('comment_text');
+        Schema::create('role_user', function (Blueprint $table) {
+            $table->primary(['role_id','user_id']);
             $table->bigInteger('user_id')->unsigned();
-            $table->bigInteger('post_id')->unsigned();
+            $table->bigInteger('role_id')->unsigned();
 
             $table->foreign('user_id')->references('id')->on('users')
                   ->onDelete('cascade')->onUpdate('cascade');
 
-            $table->foreign('post_id')->references('id')->on('posts')
+            $table->foreign('role_id')->references('id')->on('roles')
                   ->onDelete('cascade')->onUpdate('cascade');
-
-            $table->timestamps();
         });
     }
 
@@ -36,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('comments');
+        Schema::dropIfExists('user_role');
     }
 };
