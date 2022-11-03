@@ -22,8 +22,6 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         $this->call(EnclosuresTableSeeder::class);
-        $this->call(AnimalTableSeeder::class);
-        $this->call(KeepersTableSeeder::class);
-        $this->call(EmergencyContactsTableSeeder::class); 
+        
     }
 }
