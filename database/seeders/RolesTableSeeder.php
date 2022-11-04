@@ -27,23 +27,28 @@ class RolesTableSeeder extends Seeder
         $role->role = "Verified";
         $role->save();
 
-        $role->users()->attach(1);
-        $role->users()->attach(2);
+        //$role->users()->attach(1);
+        //$role->users()->attach(2);
 
         $role = new Role;
         $role->role = "Premium";
         $role->save();
 
-        $role->users()->attach(2);
+        //$role->users()->attach(2);
 
         $role = new Role;
         $role->role = "Moderator";
         $role->save();
 
-        $role->users()->attach(1);
+        //$role->users()->attach(1);
 
         $role = new Role;
         $role->role = "Admin";
         $role->save();
+
+
+
+
+
     }
 }

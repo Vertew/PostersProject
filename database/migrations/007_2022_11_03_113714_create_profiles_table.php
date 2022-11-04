@@ -22,7 +22,7 @@ return new class extends Migration
             $table->date('DoB')->nullable();
             $table->string('status')->nullable();
             $table->string('location')->nullable();
-            $table->string('profile_picture')->default('default/profile/image');
+            $table->string('profile_picture')->default('default/profile/image.png');
             $table->bigInteger('user_id')->unsigned()->unique();
 
             $table->foreign('user_id')->references('id')->on('users')

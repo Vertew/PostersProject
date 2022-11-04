@@ -22,10 +22,10 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         //$this->call(EnclosuresTableSeeder::class);
+        $this->call(RolesTableSeeder::class);
         $this->call(UsersTableSeeder::class);
         $this->call(PostsTableSeeder::class);
         $this->call(ProfilesTableSeeder::class);
-        $this->call(RolesTableSeeder::class);
         $this->call(CommentsTableSeeder::class);
 
     }

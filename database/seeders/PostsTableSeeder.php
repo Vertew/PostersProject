@@ -31,5 +31,7 @@ class PostsTableSeeder extends Seeder
         $post->user_id = 2;
         $post->save();
 
+        Post::factory()->count(50)->create();
+
     }
 }

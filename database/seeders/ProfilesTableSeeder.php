@@ -20,7 +20,7 @@ class ProfilesTableSeeder extends Seeder
         $profile->DoB = '1979-06-09';
         $profile->status = "Relaxing.";
         $profile->location = "London";
-        $profile->profile_picture = "Joe/Image";
+        $profile->profile_picture = "Joe/Image.jpg";
         $profile->user_id = 1;
         $profile->save();
 
@@ -29,5 +29,8 @@ class ProfilesTableSeeder extends Seeder
         $profile->status = "Hi i'm mike :)";
         $profile->user_id = 2;
         $profile->save();
+
+        //Profile::factory()->count((\App\Models\User::Get()->count())-2)->create();
+
     }
 }

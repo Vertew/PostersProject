@@ -33,5 +33,7 @@ class CommentsTableSeeder extends Seeder
         $comment->post_id = 2;
         $comment->save();
 
+        Comment::factory()->count(100)->create();
+
     }
 }
