@@ -33,12 +33,12 @@ class UsersTableSeeder extends Seeder
         $roles = \App\Models\Role::Get();
         $randomArray = range(1,6);
 
-        // A for loop for attaching random roles to each user in a many-to-many fashion
+        // A loop for attaching random roles to each user in a many-to-many fashion
         // without generating a large number of arbitrary (and unrealistic) fake roles
-        for ($x = 1; $x <= $users->count(); $x++) {
+        for ($i = 1; $i <= $users->count(); $i++) {
             shuffle($randomArray);
-            for ($i = 1; $i <= $randomArray[5]; $i++) {
-                $users->find($x)->roles()->attach($roles->find($randomArray[$i-1]));
+            for ($j = 1; $j <= $randomArray[5]; $j++) {
+                $users->find($i)->roles()->attach($roles->find($randomArray[$j-1]));
             }
         }
     }
