@@ -15,7 +15,7 @@ return new class extends Migration
     {
         // The data fields in profiles are nullable since all of this information will be 
         // optional to fill in apart from the profile picture which has a default image if not
-        // selected. (The default image path is just an example/placeholder for now).
+        // selected.
         Schema::create('profiles', function (Blueprint $table) {
             $table->id();
             $table->string('name')->nullable();

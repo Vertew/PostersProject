@@ -19,8 +19,8 @@ class CommentFactory extends Factory
         return [
 
             'comment_text' => fake()->realText($maxNbChars = 500, $indexSize = 2),
-            'user_id' => \App\Models\User::inRandomOrder()->first()->id, // Assigning each comment a random user from the existing users
-            'post_id' => \App\Models\Post::inRandomOrder()->first()->id, // Likewise but for posts
+            'user_id' => \App\Models\User::inRandomOrder()->first()->id,
+            'post_id' => \App\Models\Post::inRandomOrder()->first()->id,
         ];
     }
 }
