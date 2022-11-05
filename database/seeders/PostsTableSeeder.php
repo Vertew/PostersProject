@@ -17,17 +17,20 @@ class PostsTableSeeder extends Seeder
     {
         $post = new Post;
         $post->post_text = "Hello this is my first post!!";
+        $post->views = 10;
         $post->user_id = 1;
         $post->save();
 
         $post = new Post;
         $post->post_text = "This is a post with an image";
+        $post->views = 15;
         $post->image = "image/location";
         $post->user_id = 2;
         $post->save();
 
         $post = new Post;
         $post->post_text = "Hi Mike here :) :) :)";
+        $post->views = 100;
         $post->user_id = 2;
         $post->save();
 

@@ -19,6 +19,7 @@ class PostFactory extends Factory
         return [
 
             'post_text' => fake()->realText($maxNbChars = 1000, $indexSize = 2),
+            'views' => fake()->numberBetween($min = 0, $max = 1000000),
             'image' => fake()->optional($weight = 0.5)->imageUrl($width= 640, $height = 480, 'cats', true, 'Faker'),
             'user_id' => \App\Models\User::inRandomOrder()->first()->id, // Assigning each post a random user from the existing users
         ];

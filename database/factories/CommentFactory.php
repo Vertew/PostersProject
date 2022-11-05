@@ -19,6 +19,7 @@ class CommentFactory extends Factory
         return [
 
             'comment_text' => fake()->realText($maxNbChars = 500, $indexSize = 2),
+            'views' => fake()->numberBetween($min = 0, $max = 250000),
             'user_id' => \App\Models\User::inRandomOrder()->first()->id,
             'post_id' => \App\Models\Post::inRandomOrder()->first()->id,
         ];
