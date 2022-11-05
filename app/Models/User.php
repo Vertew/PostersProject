@@ -26,3 +26,4 @@ class User extends Model
     }
 
 }
+
