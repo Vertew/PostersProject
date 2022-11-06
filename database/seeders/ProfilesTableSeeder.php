@@ -30,11 +30,7 @@ class ProfilesTableSeeder extends Seeder
         $profile->user_id = 2;
         $profile->save();
 
-        /**  
-         * Below is a way of adding profiles without using a factory relationship method since the
-         * since the factory requires that each user_id being seeded by faker is unique.
-         * Profile::factory()->count((\App\Models\User::Get()->count())-2)->create();
-         */
+        //Profile::factory()->count((\App\Models\User::Get()->count())-2)->create();
     }
 }
 
