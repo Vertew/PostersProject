@@ -14,4 +14,6 @@
 
     </ul>
 
+    <a href="{{route('users.create' )}}">Create New User</a>
+
 @endsection
