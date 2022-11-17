@@ -19,7 +19,7 @@ class ProfileFactory extends Factory
         return [
 
             'name' => fake()->optional($weight = 0.85)->name(),
-            'DoB' => fake()->optional($weight = 0.85)->date(),
+            'date_of_birth' => fake()->optional($weight = 0.85)->date(),
             'status' => fake()->optional($weight = 0.85)->realText($maxNbChars = 30, $indexSize = 2),
             'location' => fake()->optional($weight = 0.85)->country(),
             'profile_picture' => fake()->optional($weight = 0.85, $default = 'default/profile/image.png')->

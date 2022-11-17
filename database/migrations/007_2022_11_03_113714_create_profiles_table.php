@@ -19,7 +19,7 @@ return new class extends Migration
         Schema::create('profiles', function (Blueprint $table) {
             $table->id();
             $table->string('name')->nullable();
-            $table->date('DoB')->nullable();
+            $table->date('date_of_birth')->nullable();
             $table->string('status')->nullable();
             $table->string('location')->nullable();
             $table->string('profile_picture')->default('default/profile/image.png');
