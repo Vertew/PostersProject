@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class UsersTableSeeder extends Seeder
 {
@@ -20,7 +21,7 @@ class UsersTableSeeder extends Seeder
         $user->username = "user1205";
         $user->email = "joe1205@hotmail.com";
         $user->email_verified_at = now();
-        $user->password = "password1";
+        $user->password = Hash::make("password1");
         $user->remember_token = Str::random(10);
         $user->save();
 
@@ -28,7 +29,7 @@ class UsersTableSeeder extends Seeder
         $user->username = "mike999";
         $user->email = "mike999@gmail.com";
         $user->email_verified_at = now();
-        $user->password = "password2";
+        $user->password = Hash::make("password2");
         $user->remember_token = Str::random(10);
         $user->save();
 
