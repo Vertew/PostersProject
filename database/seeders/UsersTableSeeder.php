@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
 
 class UsersTableSeeder extends Seeder
@@ -18,13 +19,17 @@ class UsersTableSeeder extends Seeder
         $user = new User;
         $user->username = "user1205";
         $user->email = "joe1205@hotmail.com";
+        $user->email_verified_at = now();
         $user->password = "password1";
+        $user->remember_token = Str::random(10);
         $user->save();
 
         $user = new User;
         $user->username = "mike999";
         $user->email = "mike999@gmail.com";
+        $user->email_verified_at = now();
         $user->password = "password2";
+        $user->remember_token = Str::random(10);
         $user->save();
 
         User::factory()->has(\App\Models\Profile::factory())->count(30)->create();
