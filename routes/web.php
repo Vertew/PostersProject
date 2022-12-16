@@ -19,14 +19,16 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/users', [UserController::class, 'index']) -> name('users.index');
+Route::get('/users', [UserController::class, 'index']) -> name('users.index') -> middleware('auth');
 
-Route::get('/users/create', [UserController::class, 'create']) -> name('users.create');
+Route::get('/users/create', [UserController::class, 'create']) -> name('users.create') -> middleware('auth');
 
-Route::post('/users', [UserController::class, 'store']) -> name('users.store');
+Route::post('/users', [UserController::class, 'store']) -> name('users.store') -> middleware('auth');
 
-Route::get('/users/{id}', [UserController::class, 'show']) -> name('users.show');
+Route::get('/users/{id}', [UserController::class, 'show']) -> name('users.show') -> middleware('auth');
 
-Route::get('/login', [LoginController::class, 'show']) -> name('login.show');
+Route::get('/login', [LoginController::class, 'show']) -> name('login');
 
 Route::post('/login', [LoginController::class, 'authenticate']) -> name('login.authenticate');
+
+Route::post('/login/logout', [LoginController::class, 'logout']) -> name('login.logout') -> middleware('auth');

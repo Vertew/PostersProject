@@ -10,7 +10,7 @@
         @csrf
         <p>Email: <input type = "text" name = "email" value ="{{old('email')}}"></p>
         <p>Password: <input type = "text" name = "password" value ="{{old('password')}}"></p>
-        <input type = "submit" value = "Submit">
+        <input type = "submit" value = "Login">
     </form>
 
 @endsection
