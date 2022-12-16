@@ -5,12 +5,16 @@
     <head>
         <meta charset="UTF-8">
         <title>Posters - @yield('title')</title>
-
     </head>
 
     <body>
 
         <h1>Posters - @yield('title')</h1>
+
+        <form method="POST" action="{{ route('login.logout') }}">
+            @csrf
+            <input type = "submit" value = "Logout">
+        </form>
 
 
         @if ($errors->any())

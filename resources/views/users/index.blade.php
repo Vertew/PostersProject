@@ -6,11 +6,6 @@
 
     <p>There are many users who want to post!!</p>
 
-    <form method="POST" action="{{ route('login.logout') }}">
-        @csrf
-        <input type = "submit" value = "Logout">
-    </form>
-
     <ul>
 
         @foreach ($users as $user)
