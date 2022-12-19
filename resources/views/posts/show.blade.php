@@ -10,7 +10,9 @@
 
         <li>{{$post->post_text}}</li>
 
-        <li> <img src={{$post->image}}> </li>
+        @if ($post->image != null)
+            <li> <img src={{ asset('images/'.$post->image) }}> </li>
+        @endif
 
         <li>Views: {{$post->views}}</li>
 

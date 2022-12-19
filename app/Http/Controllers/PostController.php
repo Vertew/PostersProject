@@ -40,13 +40,13 @@ class PostController extends Controller
 
         $validatedData = $request->validate([
             'post_text' => 'nullable|max:1000',
-            'post_image' => 'nullable|image',
+            'image' => 'nullable|image',
         ]);
 
         $post = new Post;
         $post->post_text = $validatedData['post_text'];
-        if($request['post_image'] != null){
-            $post->image = $validatedData['post_image'];
+        if($request['image'] != null){
+            $post->image = $this->storeImage($request);
         }
         $post->user_id = Auth::id();
         $post->views = 0;
@@ -101,4 +101,15 @@ class PostController extends Controller
     {
         //
     }
+
+    private function storeImage($request)
+    {
+
+        $newImageName = uniqid() . '-' . Auth::user()->username . '.' .
+        $request->image->extension();
+        $request->image->move(public_path('images'), $newImageName);
+
+        return $newImageName;
+    }
+
 }
