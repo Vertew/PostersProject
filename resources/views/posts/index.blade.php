@@ -6,6 +6,8 @@
 
     <p>Check out the latest posts!!</p>
 
+    <a href="{{route('posts.create')}}">Compose post</a>
+
     <ul>
 
         @foreach ($posts as $post)
