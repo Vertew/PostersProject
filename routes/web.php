@@ -28,9 +28,9 @@ Route::post('/login/logout', [LoginController::class, 'logout']) -> name('login.
 
 Route::get('/users', [UserController::class, 'index']) -> name('users.index') -> middleware('auth');
 
-Route::get('/users/create', [UserController::class, 'create']) -> name('users.create') -> middleware('auth');
+Route::get('/users/create', [UserController::class, 'create']) -> name('users.create');
 
-Route::post('/users', [UserController::class, 'store']) -> name('users.store') -> middleware('auth');
+Route::post('/users', [UserController::class, 'store']) -> name('users.store');
 
 Route::get('/users/{id}', [UserController::class, 'show']) -> name('users.show') -> middleware('auth');
 
