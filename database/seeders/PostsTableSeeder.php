@@ -16,12 +16,14 @@ class PostsTableSeeder extends Seeder
     public function run()
     {
         $post = new Post;
+        $post->title = "First Post!!!";
         $post->post_text = "Hello this is my first post!!";
         $post->views = 10;
         $post->user_id = 1;
         $post->save();
 
         $post = new Post;
+        $post->title = "Image Post!!!!";
         $post->post_text = "This is a post with an image";
         $post->views = 15;
         $post->image = "mikeimage.png";
@@ -29,6 +31,7 @@ class PostsTableSeeder extends Seeder
         $post->save();
 
         $post = new Post;
+        $post->title = "Mike.";
         $post->post_text = "Hi Mike here :) :) :)";
         $post->views = 100;
         $post->user_id = 2;

@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
+            $table->text('title');
             $table->text('post_text');
             $table->bigInteger('views')->unsigned()->default(0);
             $table->string('image')->nullable();

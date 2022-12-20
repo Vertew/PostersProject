@@ -18,8 +18,4 @@
 
     </ul>
 
-    <a href="{{route('posts.index')}}">
-        <button type="button">Return</button>
-    </a>
-
 @endsection

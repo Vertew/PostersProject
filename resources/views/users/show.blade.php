@@ -45,7 +45,7 @@
     <ul>
 
         @foreach ($user->comments as $comment)
-            <li>Add a post title system or something to replace this.</li>
+            <li>Posted on: {{$comment->post->title}}</li>
             <li><a href = "{{route('comments.show', ['id'=> $comment->id])}}">{{$comment->comment_text}}</a></li>
         @endforeach
 
