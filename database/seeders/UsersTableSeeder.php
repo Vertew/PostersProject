@@ -17,13 +17,19 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
+        $roles = \App\Models\Role::Get();
+
         $user = new User;
         $user->username = "user1205";
         $user->email = "joe1205@hotmail.com";
         $user->email_verified_at = now();
         $user->password = Hash::make("password1");
-        $user->remember_token = Str::random(10);
+        $user->remember_token = Str::random(10);  
         $user->save();
+        $user->roles()->attach($roles->find(3));
+        $user->roles()->attach($roles->find(4));
+        $user->roles()->attach($roles->find(5));
+        $user->roles()->attach($roles->find(6));
 
         $user = new User;
         $user->username = "mike999";
@@ -32,16 +38,16 @@ class UsersTableSeeder extends Seeder
         $user->password = Hash::make("password2");
         $user->remember_token = Str::random(10);
         $user->save();
+        $user->roles()->attach($roles->find(2));
 
         User::factory()->has(\App\Models\Profile::factory())->count(30)->create();
 
         $users = User::Get();
-        $roles = \App\Models\Role::Get();
         $randomArray = range(1,6);
 
         // A loop for attaching random roles to each user in a many-to-many fashion
         // without generating a large number of arbitrary (and unrealistic) fake roles
-        for ($i = 1; $i <= $users->count(); $i++) {
+        for ($i = 3; $i <= $users->count(); $i++) {
             shuffle($randomArray);
             for ($j = 1; $j <= $randomArray[5]; $j++) {
                 $users->find($i)->roles()->attach($roles->find($randomArray[$j-1]));

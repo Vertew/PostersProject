@@ -4,7 +4,7 @@
 
 @section('content')
 
-    <a href="{{route('users.show', ['id'=> $user->id])}}">
+    <a href="{{route('users.show', ['id'=> Auth::id()])}}">
         <button type="button">My Account</button>
     </a>
 

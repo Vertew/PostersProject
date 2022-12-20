@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,3 +42,5 @@ Route::get('/posts/create', [PostController::class, 'create']) -> name('posts.cr
 Route::post('/posts', [PostController::class, 'store']) -> name('posts.store') -> middleware('auth');
 
 Route::get('/posts/{id}', [PostController::class, 'show']) -> name('posts.show') -> middleware('auth');
+
+Route::get('/profiles/{id}', [ProfileController::class, 'show']) -> name('profiles.show') -> middleware('auth');

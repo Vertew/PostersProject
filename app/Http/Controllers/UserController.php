@@ -71,8 +71,7 @@ class UserController extends Controller
     public function show($id)
     {
         $user = User::findOrFail($id);
-        $posts = Post::where('user_id',$id)->get();
-        return view('users.show')->withUser($user)->withPosts($posts);
+        return view('users.show', ['user' => $user]);
     }
 
     /**
