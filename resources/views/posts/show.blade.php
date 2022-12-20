@@ -4,9 +4,13 @@
 
 @section('content')
 
+    <a href="{{url()->previous()}}">
+        <button type="button">Back</button>
+    </a>
+
     <ul>
 
-        <li>Poster: {{$post->user->profile->name ?? 'Anonymous'}}</li>
+        <li><a href="{{route('users.show', ['id'=> $post->user->id])}}">Poster: {{$post->user->profile->name ?? 'Anonymous'}} </a></li>
 
         <li>{{$post->post_text}}</li>
 
@@ -17,5 +21,9 @@
         <li>Views: {{$post->views}}</li>
 
     </ul>
+
+    <a href="{{route('posts.index')}}">
+        <button type="button">Return</button>
+    </a>
 
 @endsection

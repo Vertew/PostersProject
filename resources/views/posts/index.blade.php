@@ -4,9 +4,15 @@
 
 @section('content')
 
-    <p>Check out the latest posts!!</p>
+    <a href="{{route('users.show', ['id'=> $user->id])}}">
+        <button type="button">My Account</button>
+    </a>
 
-    <a href="{{route('posts.create')}}">Compose post</a>
+    <h2>Check out the latest posts!!</h2>
+
+    <a href="{{route('posts.create')}}">
+        <button type="button">Compose post</button>
+    </a>
 
     <ul>
 

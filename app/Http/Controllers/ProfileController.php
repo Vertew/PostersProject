@@ -2,14 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
-use App\Models\Profile;
-use App\Models\Post;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Str;
 
-class UserController extends Controller
+class ProfileController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,8 +13,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::get();
-        return view('users.index', ['users' => $users]);
+        //
     }
 
     /**
@@ -29,7 +23,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('users.create');
+        //
     }
 
     /**
@@ -40,26 +34,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
-            'username' => 'required|max:30',
-            'email' => 'required|email',
-            'password' => 'required|max:255',
-        ]);
-
-        $user = new User;
-        $user->username = $validatedData['username'];
-        $user->email = $validatedData['email'];
-        $user->email_verified_at = now(); // The email isn't actually verified right now, this just marks when the account was created.
-        $user->password = Hash::make($validatedData['password']);
-        $user->remember_token = Str::random(10);
-        $user->save();
-
-        $profile = new Profile; // Profiles are intrinsically linked to users, so when a user is created, an empty profile is also created.
-        $profile->user_id = $user->id;
-        $profile->save();
-
-        session()->flash('message', 'New User was created.');
-        return redirect()->route('users.index');
+        //
     }
 
     /**
@@ -70,9 +45,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        $user = User::findOrFail($id);
-        $posts = Post::where('user_id',$id)->get();
-        return view('users.show')->withUser($user)->withPosts($posts);
+        //
     }
 
     /**
