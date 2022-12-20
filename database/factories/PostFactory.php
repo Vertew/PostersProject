@@ -21,7 +21,8 @@ class PostFactory extends Factory
             'title' => fake()->realText($maxNbChars = 20, $indexSize = 2),
             'post_text' => fake()->realText($maxNbChars = 1000, $indexSize = 2),
             'views' => fake()->numberBetween($min = 0, $max = 1000000),
-            'image' => fake()->optional($weight = 0.5)->imageUrl($width= 640, $height = 480, 'cats', true, 'Faker'),
+            // Fakers' image generation is a bit tempremental so this isn't working at the moment.
+            'image' => fake()->optional($weight = 0.5)->image($dir = public_path('images'), $width= 640, $height = 480, $fullPath = false),
             'user_id' => \App\Models\User::inRandomOrder()->first()->id, // Insuring each post is related to an existing user.
         ];
     }
