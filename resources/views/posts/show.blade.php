@@ -10,7 +10,7 @@
 
     <ul>
 
-        <li><a href="{{route('users.show', ['id'=> $post->user->id])}}">Poster: {{$post->user->profile->name ?? 'Anonymous'}} </a></li>
+        <li><a href="{{route('users.show', ['id'=> $post->user->id])}}">Poster: {{$post->user->profile->name ?? $post->user->username}} </a></li>
 
         <li>{{$post->post_text}}</li>
 
@@ -22,8 +22,15 @@
 
     </ul>
 
-    <a href="{{route('posts.index')}}">
-        <button type="button">Return</button>
-    </a>
+    <h2>Comments</h2>
+
+    <ul>
+
+        @foreach ($post->comments as $comment)
+            <li>{{$comment->user->profile->name ?? $comment->user->username}}:</li>
+            <li><a href = "{{route('comments.show', ['id'=> $comment->id])}}">{{$comment->comment_text}}</a></li>
+        @endforeach
+
+    </ul>
 
 @endsection

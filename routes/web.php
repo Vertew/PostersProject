@@ -5,6 +5,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\CommentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,3 +45,5 @@ Route::post('/posts', [PostController::class, 'store']) -> name('posts.store') -
 Route::get('/posts/{id}', [PostController::class, 'show']) -> name('posts.show') -> middleware('auth');
 
 Route::get('/profiles/{id}', [ProfileController::class, 'show']) -> name('profiles.show') -> middleware('auth');
+
+Route::get('/comments/{id}', [CommentController::class, 'show']) -> name('comments.show') -> middleware('auth');

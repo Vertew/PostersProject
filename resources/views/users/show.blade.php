@@ -30,16 +30,23 @@
 
     </ul>
 
-    <a href="{{route('posts.index')}}">
-        <button type="button">Return</button>
-    </a>
-
     <h2>Posts</h2>
 
     <ul>
 
         @foreach ($user->posts as $post)
             <li><a href = "{{route('posts.show', ['id'=> $post->id])}}"> {{$post->post_text}}</a></li>
+        @endforeach
+
+    </ul>
+
+    <h2>Comments</h2>
+
+    <ul>
+
+        @foreach ($user->comments as $comment)
+            <li>Add a post title system or something to replace this.</li>
+            <li><a href = "{{route('comments.show', ['id'=> $comment->id])}}">{{$comment->comment_text}}</a></li>
         @endforeach
 
     </ul>

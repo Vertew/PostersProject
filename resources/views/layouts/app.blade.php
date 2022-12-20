@@ -16,7 +16,9 @@
             <input type = "submit" value = "Logout">
         </form>
 
-
+        <a href="{{route('posts.index')}}">
+            <button type="button">Home</button>
+        </a>
 
         @if ($errors->any())
             <div>
