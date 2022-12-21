@@ -22,6 +22,6 @@
 
     </ul>
 
-    <livewire:show-comments :post="$post">
+    <livewire:comment-form :post="$post">
 
 @endsection
