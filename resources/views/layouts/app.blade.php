@@ -5,6 +5,8 @@
     <head>
         <meta charset="UTF-8">
         <title>Posters - @yield('title')</title>
+
+        @livewireStyles
     </head>
 
     <body>
@@ -38,6 +40,8 @@
         <div>
             @yield('content')
         </div>
+
+        @livewireScripts
 
     </body>
 
