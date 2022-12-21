@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Post')
+@section('title', $post->title)
 
 @section('content')
 
@@ -22,15 +22,6 @@
 
     </ul>
 
-    <h2>Comments</h2>
-
-    <ul>
-
-        @foreach ($post->comments as $comment)
-            <li>{{$comment->user->profile->name ?? $comment->user->username}}:</li>
-            <li><a href = "{{route('comments.show', ['id'=> $comment->id])}}">{{$comment->comment_text}}</a></li>
-        @endforeach
-
-    </ul>
+    <livewire:show-comments :post="$post">
 
 @endsection
