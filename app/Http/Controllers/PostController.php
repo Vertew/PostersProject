@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File; 
 
 class PostController extends Controller
 {
@@ -76,7 +77,8 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        //
+        $post = Post::findOrFail($id);
+        return view('posts.edit', ['post' => $post]);
     }
 
     /**
@@ -88,7 +90,27 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validatedData = $request->validate([
+            'title' => 'nullable|max:20',
+            'post_text' => 'nullable|max:1000',
+            'image' => 'nullable|image',
+        ]);
+
+        $post = Post::findOrFail($id);
+
+        $post->title = $validatedData['title'];
+        $post->post_text = $validatedData['post_text'];
+        if($request['image'] != null){
+            $post->image = $this->storeImage($request);
+        }
+        if($request['checkbox']){
+            File::delete(public_path('images/'.$post->image));
+            $post->image = null;
+        }
+
+        $post->save();
+        return redirect()->route('posts.show', ['id'=> $post->id]);
+
     }
 
     /**
@@ -111,5 +133,4 @@ class PostController extends Controller
 
         return $newImageName;
     }
-
 }

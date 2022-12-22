@@ -22,6 +22,10 @@
 
     </ul>
 
+    <a href="{{route('posts.edit', ['id'=> $post->id])}}">
+        <button type="button">Edit post</button>
+    </a>
+
     <livewire:comment-form :post="$post">
 
 @endsection
