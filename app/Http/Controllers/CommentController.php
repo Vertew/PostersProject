@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use App\Models\Comment;
 
 class CommentController extends Controller
@@ -59,7 +60,12 @@ class CommentController extends Controller
     public function edit($id)
     {
         $comment = Comment::findOrFail($id);
-        return view('comments.edit', ['comment' => $comment]);
+        if (Gate::allows('update-comment', $comment)){
+            return view('comments.edit', ['comment' => $comment]);
+        }else{
+            session()->flash('message', "You don't have permission to edit this comment.");
+            return redirect()->route('comments.show', ['id'=> $comment->id]);
+        }
     }
 
     /**
@@ -94,10 +100,16 @@ class CommentController extends Controller
     public function destroy($id)
     {
         $comment = Comment::findOrFail($id);
-        $post_id = $comment->post->id;
-        $comment->delete();
 
-        session()->flash('message', 'Comment was deleted.');
-        return redirect()->route('posts.show', ['id'=> $post_id]);
+        if (Gate::allows('update-comment', $comment)) {
+            $post_id = $comment->post->id;
+            $comment->delete();
+
+            session()->flash('message', 'Comment was deleted.');
+            return redirect()->route('posts.show', ['id'=> $post_id]);
+        }else{
+            session()->flash('message', "You don't have permission to delete this comment.");
+            return redirect()->route('comments.show', ['id'=> $comment->id]);
+        }
     }
 }

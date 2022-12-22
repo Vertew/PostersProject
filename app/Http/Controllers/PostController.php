@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Post;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File; 
+use Illuminate\Support\Facades\Gate;
+use App\Models\Post;
 
 class PostController extends Controller
 {
@@ -80,7 +81,13 @@ class PostController extends Controller
     public function edit($id)
     {
         $post = Post::findOrFail($id);
-        return view('posts.edit', ['post' => $post]);
+
+        if (Gate::allows('update-post', $post)) {
+            return view('posts.edit', ['post' => $post]);
+        }else{
+            session()->flash('message', "You don't have permission to edit this post.");
+            return redirect()->route('posts.show', ['id'=> $post->id]);
+        }
     }
 
     /**
@@ -92,13 +99,12 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $post = Post::findOrFail($id);
         $validatedData = $request->validate([
             'title' => 'nullable|max:20',
             'post_text' => 'nullable|max:1000',
             'image' => 'nullable|image',
         ]);
-
-        $post = Post::findOrFail($id);
 
         $post->title = $validatedData['title'];
         $post->post_text = $validatedData['post_text'];
@@ -114,7 +120,6 @@ class PostController extends Controller
 
         session()->flash('message', 'Post was updated.');
         return redirect()->route('posts.show', ['id'=> $post->id]);
-
     }
 
     /**
@@ -126,11 +131,16 @@ class PostController extends Controller
     public function destroy($id)
     {
         $post = Post::findOrFail($id);
-        File::delete(public_path('images/'.$post->image));
-        $post->delete();
+        if (Gate::allows('update-post', $post)) {
+            File::delete(public_path('images/'.$post->image));
+            $post->delete();
 
-        session()->flash('message', 'Post was deleted.');
-        return redirect()->route('posts.index');
+            session()->flash('message', 'Post was deleted.');
+            return redirect()->route('posts.index');
+        }else{
+            session()->flash('message', 'You do not have permission to delete this post.');
+            return redirect()->route('posts.show', ['id'=> $post->id]);
+        }
     }
 
     private function storeImage($request)
