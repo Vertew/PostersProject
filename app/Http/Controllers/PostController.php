@@ -40,11 +40,13 @@ class PostController extends Controller
     {
 
         $validatedData = $request->validate([
+            'title' => 'nullable|max:20',
             'post_text' => 'nullable|max:1000',
             'image' => 'nullable|image',
         ]);
 
         $post = new Post;
+        $post->title = $validatedData['title'];
         $post->post_text = $validatedData['post_text'];
         if($request['image'] != null){
             $post->image = $this->storeImage($request);
@@ -109,6 +111,8 @@ class PostController extends Controller
         }
 
         $post->save();
+
+        session()->flash('message', 'Post was updated.');
         return redirect()->route('posts.show', ['id'=> $post->id]);
 
     }
@@ -121,7 +125,12 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $post = Post::findOrFail($id);
+        File::delete(public_path('images/'.$post->image));
+        $post->delete();
+
+        session()->flash('message', 'Post was deleted.');
+        return redirect()->route('posts.index');
     }
 
     private function storeImage($request)
