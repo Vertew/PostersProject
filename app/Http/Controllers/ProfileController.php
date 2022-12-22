@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File; 
+use Illuminate\Support\Facades\Gate;
 use App\Models\Profile;
 
 class ProfileController extends Controller
@@ -58,7 +61,14 @@ class ProfileController extends Controller
      */
     public function edit($id)
     {
-        //
+        $profile = Profile::findOrFail($id);
+
+        if (Gate::allows('update-profile', $profile)) {
+            return view('profiles.edit', ['profile' => $profile]);
+        }else{
+            session()->flash('message', "You don't have permission to edit this profile.");
+            return redirect()->route('profiles.show', ['id'=> $profile->id]);
+        }
     }
 
     /**
@@ -70,7 +80,33 @@ class ProfileController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validatedData = $request->validate([
+            'name' => 'nullable|max:30',
+            'date_of_birth' => 'nullable|date',
+            'status' => 'nullable|max:30',
+            'location' => 'nullable|max:30',
+            'profile_picture' => 'nullable|image',
+        ]);
+
+        $profile = Profile::findOrFail($id);
+
+        $profile->name = $validatedData['name'];
+        $profile->date_of_birth = $validatedData['date_of_birth'];
+        $profile->status = $validatedData['status'];
+        $profile->location = $validatedData['location'];
+
+        if($request['profile_picture'] != null){
+            $profile->profile_picture = $this->storeImage($request);
+        }
+        if($request['checkbox']){
+            File::delete(public_path('images/'.$profile->profile_picture));
+            $profile->profile_picture = "DefaultProfileIcon.png";
+        }
+
+        $profile->save();
+
+        session()->flash('message', 'Profile was updated.');
+        return redirect()->route('profiles.show', ['id'=> $profile->id]);
     }
 
     /**
@@ -83,4 +119,14 @@ class ProfileController extends Controller
     {
         //
     }
+
+    private function storeImage($request)
+    {
+        $newImageName = uniqid() . '-' . Auth::user()->username . '.' .
+        $request->profile_picture->extension();
+        $request->profile_picture->move(public_path('profile_pictures'), $newImageName);
+
+        return $newImageName;
+    }
+
 }

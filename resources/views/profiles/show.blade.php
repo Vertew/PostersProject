@@ -10,7 +10,9 @@
 
     <ul>
 
-        <li> <img src={{$profile->profile_picture}}> </li>
+        @if ($profile->profile_picture != null)
+            <li> <img src={{ asset('profile_pictures/'.$profile->profile_picture) }}> </li>
+        @endif
 
         @if ($profile->name != null)
             <li>Name: {{$profile->name ?? 'Anonymous'}}</li>
@@ -31,5 +33,9 @@
         <li>Email: {{$profile->user->email}}</li>
 
     </ul>
+
+    <a href="{{route('profiles.edit', ['id'=> $profile->id])}}">
+        <button type="button">Edit profile</button>
+    </a>
 
 @endsection

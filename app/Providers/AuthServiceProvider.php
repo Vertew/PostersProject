@@ -7,6 +7,7 @@ use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvid
 use App\Models\Post;
 use App\Models\User;
 use App\Models\Comment;
+use App\Models\Profile;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -34,6 +35,10 @@ class AuthServiceProvider extends ServiceProvider
 
         Gate::define('update-comment', function (User $user, Comment $comment) {
             return $user->id === $comment->user_id;
+        });
+
+        Gate::define('update-profile', function (User $user, Profile $profile) {
+            return $user->id === $profile->user_id;
         });
     }
 }

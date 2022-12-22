@@ -52,6 +52,10 @@ Route::post('/posts/update/{id}', [PostController::class, 'update']) -> name('po
 
 Route::get('/profiles/{id}', [ProfileController::class, 'show']) -> name('profiles.show') -> middleware('auth');
 
+Route::get('/profiles/edit/{id}', [ProfileController::class, 'edit']) -> name('profiles.edit') -> middleware('auth');
+
+Route::post('/profiles/update/{id}', [ProfileController::class, 'update']) -> name('profiles.update') -> middleware('auth');
+
 Route::get('/comments/{id}', [CommentController::class, 'show']) -> name('comments.show') -> middleware('auth');
 
 Route::delete('/comments/{id}', [CommentController::class, 'destroy']) -> name('comments.destroy') -> middleware('auth');
