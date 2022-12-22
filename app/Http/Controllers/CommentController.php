@@ -58,7 +58,8 @@ class CommentController extends Controller
      */
     public function edit($id)
     {
-        //
+        $comment = Comment::findOrFail($id);
+        return view('comments.edit', ['comment' => $comment]);
     }
 
     /**
@@ -70,7 +71,18 @@ class CommentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validatedData = $request->validate([
+            'comment_text' => 'nullable|max:500',
+        ]);
+
+        $comment = Comment::findOrFail($id);
+
+        $comment->comment_text = $validatedData['comment_text'];
+
+        $comment->save();
+
+        session()->flash('message', 'Comment was updated.');
+        return redirect()->route('comments.show', ['id'=> $comment->id]);
     }
 
     /**
@@ -81,6 +93,11 @@ class CommentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $comment = Comment::findOrFail($id);
+        $post_id = $comment->post->id;
+        $comment->delete();
+
+        session()->flash('message', 'Comment was deleted.');
+        return redirect()->route('posts.show', ['id'=> $post_id]);
     }
 }

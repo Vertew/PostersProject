@@ -26,7 +26,7 @@
         <button type="button">Edit post</button>
     </a>
 
-    <form method="POST" action="{{ route('posts.destroy', ['id'=> $post->id])}}" enctype="multipart/form-data">
+    <form method="POST" action="{{ route('posts.destroy', ['id'=> $post->id])}}">
         @csrf
         @method('DELETE')
         <input type = "submit" value = "Delete Post">

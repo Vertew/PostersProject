@@ -18,4 +18,14 @@
 
     </ul>
 
+    <a href="{{route('comments.edit', ['id'=> $comment->id])}}">
+        <button type="button">Edit comment</button>
+    </a>
+
+    <form method="POST" action="{{ route('comments.destroy', ['id'=> $comment->id])}}">
+        @csrf
+        @method('DELETE')
+        <input type = "submit" value = "Delete Comment">
+    </form>
+
 @endsection
