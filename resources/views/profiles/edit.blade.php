@@ -6,10 +6,10 @@
 
     <form method="POST" action="{{ route('profiles.update' , ['id'=> $profile->id])}}" enctype="multipart/form-data">
         @csrf
-        <p>Name: <input type = "text" name = "name" value = "{{$profile->name}}"></p>
+        <p>Name: <input type = "text" name = "name" value = "{{$profile->name}}"> Max 30 characters</p>
         <p>Date of Birth: <input type = "date" name = "date_of_birth" value = "{{$profile->date_of_birth}}"></p>
-        <p>Status: <input type = "text" name = "status" value = "{{$profile->status}}"></p>
-        <p>Location: <input type = "text" name = "location" value = "{{$profile->location}}"></p>
+        <p>Status: <input type = "text" name = "status" value = "{{$profile->status}}"> Max 100 characters</p>
+        <p>Location: <input type = "text" name = "location" value = "{{$profile->location}}"> Max 30 characters</p>
         <p>Add/change profile picture: <input type = "file" name = "profile_picture"></p>
         <input type="checkbox" id="checkbox2" name = "checkbox">
         <label for="checkbox2">Remove profile picture</label><br>

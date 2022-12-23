@@ -83,7 +83,7 @@ class ProfileController extends Controller
         $validatedData = $request->validate([
             'name' => 'nullable|max:30',
             'date_of_birth' => 'nullable|date',
-            'status' => 'nullable|max:30',
+            'status' => 'nullable|max:100',
             'location' => 'nullable|max:30',
             'profile_picture' => 'nullable|image',
         ]);
