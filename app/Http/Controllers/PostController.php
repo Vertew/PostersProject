@@ -28,7 +28,12 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('posts.create');
+        if (Gate::allows('create-post')) {
+            return view('posts.create');
+        }else{
+            session()->flash('message', 'You do not have permission to create posts.');
+            return redirect()->route('posts.index');
+        }
     }
 
     /**
@@ -131,7 +136,7 @@ class PostController extends Controller
     public function destroy($id)
     {
         $post = Post::findOrFail($id);
-        if (Gate::allows('update-post', $post)) {
+        if (Gate::allows('delete-post', $post)) {
             File::delete(public_path('images/'.$post->image));
             $post->delete();
 

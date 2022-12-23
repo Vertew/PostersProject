@@ -7,6 +7,7 @@ use App\Models\Profile;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Str;
 
 class UserController extends Controller
@@ -105,6 +106,17 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = Comment::findOrFail($id);
+
+        if (Gate::allows('delete-user')) {
+            $user_id = $user->id;
+            $user->delete();
+
+            session()->flash('message', 'User was deleted.');
+            return redirect()->route('posts.index');
+        }else{
+            session()->flash('message', "You don't have permission to delete this.");
+            return redirect()->route('users.show', ['id'=> $user->id]);
+        }
     }
 }

@@ -101,7 +101,7 @@ class CommentController extends Controller
     {
         $comment = Comment::findOrFail($id);
 
-        if (Gate::allows('update-comment', $comment)) {
+        if (Gate::allows('delete-comment', $comment)) {
             $post_id = $comment->post->id;
             $comment->delete();
 

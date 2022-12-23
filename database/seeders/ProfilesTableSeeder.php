@@ -31,6 +31,22 @@ class ProfilesTableSeeder extends Seeder
         $profile->user_id = 2;
         $profile->save();
 
+        $profile = new Profile;
+        $profile->name = "Richard Hope";
+        $profile->status = "Argh";
+        $profile->profile_picture = "DefaultProfileIcon.png";
+        $profile->user_id = 3;
+        $profile->save();
+
+        $profile = new Profile;
+        $profile->name = "Kaitlyn Jones";
+        $profile->date_of_birth = '1999-03-03';
+        $profile->status = "Status";
+        $profile->location = "Swansea";
+        $profile->profile_picture = "DefaultProfileIcon.png";
+        $profile->user_id = 4;
+        $profile->save();
+
         //Profile::factory()->count((\App\Models\User::Get()->count())-2)->create();
     }
 }

@@ -3,8 +3,8 @@
     <h3>Add comment</h3>
 
     <form wire:submit.prevent="save">
-
-        <textarea wire:model="comment.comment_text"></textarea>
+        <p>Max 500 characters</p>
+        <textarea wire:model="comment.comment_text" ></textarea>
      
         <button type="submit">Post</button>
     </form>

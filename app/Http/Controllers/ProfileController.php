@@ -95,17 +95,21 @@ class ProfileController extends Controller
         $profile->status = $validatedData['status'];
         $profile->location = $validatedData['location'];
 
-        if($request['profile_picture'] != null){
-            $profile->profile_picture = $this->storeImage($request);
-        }
-        if($request['checkbox']){
-            File::delete(public_path('images/'.$profile->profile_picture));
-            $profile->profile_picture = "DefaultProfileIcon.png";
+        if (Gate::allows('icon-profile', $profile)) {
+            if($request['profile_picture'] != null){
+                $profile->profile_picture = $this->storeImage($request);
+            }
+            if($request['checkbox'] && !($profile->profile_picture === "DefaultProfileIcon.png")){
+                File::delete(public_path('profile_pictures/'.$profile->profile_picture));
+                $profile->profile_picture = "DefaultProfileIcon.png";
+            }
+            session()->flash('message', 'Profile was updated.');
+        }elseif($request['profile_picture'] != null || $request['checkbox']){
+            session()->flash('message', 'Profile Updated. You do not have permission to alter your profile icon.');
         }
 
         $profile->save();
 
-        session()->flash('message', 'Profile was updated.');
         return redirect()->route('profiles.show', ['id'=> $profile->id]);
     }
 
