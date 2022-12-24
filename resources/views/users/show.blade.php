@@ -45,7 +45,7 @@
     <ul>
 
         @foreach ($user->comments as $comment)
-            <li>Posted on: {{$comment->post->title}}</li>
+            <li>Posted on: <a href = "{{route('posts.show', ['id'=> $comment->post->id])}}">{{$comment->post->title}}</a></li>
             <li><a href = "{{route('comments.show', ['id'=> $comment->id])}}">{{$comment->comment_text}}</a></li>
         @endforeach
 

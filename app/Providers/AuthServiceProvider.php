@@ -38,7 +38,7 @@ class AuthServiceProvider extends ServiceProvider
         Premium users are allowed have custom profile pictures.
         Verified users are allowed to make and edit their own comments and posts.
         Standard users can post, comment and alter their profile information.
-        Restricted users can only view the website. This status can be applied to any account
+        Restricted users can only view the website and delete their posts. This status can be applied to any account
         except admins as a form of suspension.
         (All roles are allowed to delete their own posts/comments)
         */
