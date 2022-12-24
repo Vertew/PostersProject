@@ -43,7 +43,7 @@ class CommentForm extends Component
             // Updating post so changes are displayed instantly
             $this->post = Post::find($this->post->id);
         }else{
-            session()->flash('message', 'Cou do not have permission to post a comment.');
+            session()->flash('message', 'You do not have permission to post a comment.');
             return redirect()->route('posts.show', ['id'=> $this->post->id]);
         }
 

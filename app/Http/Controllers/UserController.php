@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Profile;
 use App\Models\Post;
+use App\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Gate;
@@ -55,12 +56,15 @@ class UserController extends Controller
         $user->remember_token = Str::random(10);
         $user->save();
 
+        $roles = Role::Get();
+        $user->roles()->attach($roles->find(2)); // Role 2 aka standard is the default role
+
         $profile = new Profile; // Profiles are intrinsically linked to users, so when a user is created, an empty profile is also created.
         $profile->user_id = $user->id;
         $profile->save();
 
         session()->flash('message', 'New User was created.');
-        return redirect()->route('users.index');
+        return redirect()->route('posts.index');
     }
 
     /**
