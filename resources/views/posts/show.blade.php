@@ -32,6 +32,8 @@
         <input type = "submit" value = "Delete Post">
     </form>
 
+    <livewire:like-form :post="$post">
+
     <livewire:comment-form :post="$post">
 
 @endsection
