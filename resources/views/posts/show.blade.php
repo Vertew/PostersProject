@@ -12,15 +12,21 @@
 
         <li><a href="{{route('users.show', ['id'=> $post->user->id])}}">Poster: {{$post->user->profile->name ?? $post->user->username}} </a></li>
 
-        <li>{{$post->post_text}}</li>
+        <li><textarea rows="20" cols="70" readonly >{{$post->post_text}}</textarea></li>
 
         @if ($post->image != null)
             <li> <img src={{ asset('images/'.$post->image) }}> </li>
         @endif
 
-        <li>Views: {{$post->views}}</li>
+        <li>{{$post->views}} Views</li>
+
+        <li><livewire:like-form :post="$post"> </li>
 
     </ul>
+
+    <a href="{{route('posts.likes', ['id'=> $post->id])}}">
+        <button type="button">View Likes</button>
+    </a>
 
     <a href="{{route('posts.edit', ['id'=> $post->id])}}">
         <button type="button">Edit post</button>
@@ -32,7 +38,6 @@
         <input type = "submit" value = "Delete Post">
     </form>
 
-    <livewire:like-form :post="$post">
 
     <livewire:comment-form :post="$post">
 

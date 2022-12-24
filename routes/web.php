@@ -50,6 +50,8 @@ Route::get('/posts/edit/{id}', [PostController::class, 'edit']) -> name('posts.e
 
 Route::post('/posts/update/{id}', [PostController::class, 'update']) -> name('posts.update') -> middleware('auth');
 
+Route::get('/posts/likes/{id}', [PostController::class, 'likes']) -> name('posts.likes') -> middleware('auth');
+
 Route::get('/profiles/{id}', [ProfileController::class, 'show']) -> name('profiles.show') -> middleware('auth');
 
 Route::get('/profiles/edit/{id}', [ProfileController::class, 'edit']) -> name('profiles.edit') -> middleware('auth');

@@ -1,6 +1,5 @@
 <div>
 
-    <button wire:click="increment">Like</button>
-    <h1>{{ $likes }}</h1>
+    <p>{{ $likes }} Likes <button wire:click="increment">Like</button></p>
 
 </div>

@@ -150,6 +150,12 @@ class PostController extends Controller
         }
     }
 
+    public function likes($id)
+    {
+        $post = Post::findOrFail($id);
+        return view('posts.likes', ['users'=> $post->likes()->get()], ['post' => $post]);
+    }
+
     private function storeImage($request)
     {
 

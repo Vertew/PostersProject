@@ -24,6 +24,7 @@ class LikeForm extends Component
         }else{
             $this->post->likes()->detach($this->user);
         }
+
     }
 
 
@@ -32,7 +33,7 @@ class LikeForm extends Component
         $this->post = Post::find($this->post->id);
 
         $this->likes = $this->post->likes()->count();
-        
+
         return view('livewire.like-form', ['likes' => $this->likes]);
     }
 }
