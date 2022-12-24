@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Post;
+use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -36,6 +37,10 @@ class PostsTableSeeder extends Seeder
         $post->views = 100;
         $post->user_id = 2;
         $post->save();
+
+        $users = User::Get();
+
+        $post->likes()->attach($users->find(1));
 
         Post::factory()->has(\App\Models\Comment::factory()->count(3))->count(50)->create();
 
