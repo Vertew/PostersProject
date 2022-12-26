@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\User;
+use App\Models\Image;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
@@ -68,6 +69,7 @@ class UsersTableSeeder extends Seeder
         // A loop for attaching random roles to each user in a many-to-many fashion
         // without generating a large number of arbitrary (and unrealistic) fake roles
         for ($i = 5; $i <= $users->count(); $i++) {
+            $users->find($i)->profile->image()->save(new Image);
             shuffle($randomArray);
             for ($j = 1; $j <= $randomArray[5]; $j++) {
                 $users->find($i)->roles()->attach($roles->find($randomArray[$j-1]));

@@ -5,6 +5,8 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Image;
+use App\Models\Profile;
+use App\Models\Post;
 
 class ImagesTableSeeder extends Seeder
 {
@@ -15,16 +17,19 @@ class ImagesTableSeeder extends Seeder
      */
     public function run()
     {
+        $profile = Profile::find(31);
         $image = new Image;
         $image->name = "Joe.png";
-        $image->imageable_id = 31;
-        $image->imageable_type = "Profile";
-        $image->save();
+        $profile->image()->save($image);
 
+        $profile = Profile::find(32);
         $image = new Image;
         $image->name = "WaterProfileImage2.jpg";
-        $image->imageable_id = 1;
-        $image->imageable_type = "Post";
-        $image->save();
+        $profile->image()->save($image);
+
+        $post = Post::find(1);
+        $image = new Image;
+        $image->name = "ExampleImage.png";
+        $post->image()->save($image);
     }
 }

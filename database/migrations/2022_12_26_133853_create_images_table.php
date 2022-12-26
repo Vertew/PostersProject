@@ -15,9 +15,8 @@ return new class extends Migration
     {
         Schema::create('images', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->bigInteger('imageable_id')->unsigned();
-            $table->string('imageable_type');
+            $table->string('name')->default('DefaultProfileIcon.png');
+            $table->morphs('imageable');
             $table->timestamps();
         });
     }

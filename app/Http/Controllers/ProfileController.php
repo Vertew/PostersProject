@@ -94,15 +94,16 @@ class ProfileController extends Controller
         $profile->date_of_birth = $validatedData['date_of_birth'];
         $profile->status = $validatedData['status'];
         $profile->location = $validatedData['location'];
-
+        $image = $profile->image;
         if (Gate::allows('icon-profile', $profile)) {
             if($request['profile_picture'] != null){
-                $profile->profile_picture = $this->storeImage($request);
+                $image->name = $this->storeImage($request);
             }
-            if($request['checkbox'] && !($profile->profile_picture === "DefaultProfileIcon.png")){
-                File::delete(public_path('profile_pictures/'.$profile->profile_picture));
-                $profile->profile_picture = "DefaultProfileIcon.png";
+            if($request['checkbox'] && !($profile->image->name === "DefaultProfileIcon.png")){
+                File::delete(public_path('profile_pictures/'.$image->name));
+                $image->name = "DefaultProfileIcon.png";
             }
+            $profile->image()->save($image);
             session()->flash('message', 'Profile was updated.');
         }elseif($request['profile_picture'] != null || $request['checkbox']){
             session()->flash('message', 'Profile Updated. You do not have permission to alter your profile icon.');

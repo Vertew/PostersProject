@@ -15,9 +15,7 @@
         <li><textarea rows="20" cols="70" readonly >{{$post->post_text}}</textarea></li>
 
         @if ($post->image != null)
-            <li> <img src={{ asset('images/'.$post->image) }}> </li>
-        @else
-            <li> <p>No Image</p> </li>
+            <li> <img src={{ asset('images/'.$post->image->name) }}> </li>
         @endif
 
         <li>{{$post->views}} Views</li>

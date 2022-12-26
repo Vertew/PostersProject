@@ -10,8 +10,8 @@
 
     <ul>
 
-        @if ($profile->profile_picture != null)
-            <li> <img src={{ asset('profile_pictures/'.$profile->profile_picture) }}> </li>
+        @if ($profile->image != null)
+            <li> <img src={{ asset('profile_pictures/'.$profile->image->name) }}> </li>
         @endif
 
         @if ($profile->name != null)

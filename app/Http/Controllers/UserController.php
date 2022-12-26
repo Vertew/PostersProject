@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Profile;
 use App\Models\Post;
 use App\Models\Role;
+use App\Models\Image;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Gate;
@@ -62,6 +63,8 @@ class UserController extends Controller
         $profile = new Profile; // Profiles are intrinsically linked to users, so when a user is created, an empty profile is also created.
         $profile->user_id = $user->id;
         $profile->save();
+
+        $profile->image()->save(new Image);
 
         session()->flash('message', 'New User was created.');
         return redirect()->route('posts.index');

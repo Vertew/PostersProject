@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File; 
 use Illuminate\Support\Facades\Gate;
 use App\Models\Post;
+use App\Models\Image;
 
 class PostController extends Controller
 {
@@ -54,13 +55,15 @@ class PostController extends Controller
         $post = new Post;
         $post->title = $validatedData['title'];
         $post->post_text = $validatedData['post_text'];
-        if($request['image'] != null){
-            $post->image = $this->storeImage($request);
-        }
         $post->user_id = Auth::id();
         $post->views = 0;
         $post->save();
 
+        if($request['image'] != null){
+            $image = new Image;
+            $image->name = $this->storeImage($request);
+            $post->image()->save($image);
+        }
         session()->flash('message', 'New Post was created.');
         return redirect()->route('posts.index');
     }
@@ -115,14 +118,21 @@ class PostController extends Controller
 
         $post->title = $validatedData['title'];
         $post->post_text = $validatedData['post_text'];
+        $image = $post->image;
         if($request['image'] != null){
-            $post->image = $this->storeImage($request);
+            if ($image == null){
+                $image = new Image;
+            }
+            $image->name = $this->storeImage($request);
+            $post->image()->save($image);
         }
         if($request['checkbox']){
-            File::delete(public_path('images/'.$post->image));
-            $post->image = null;
+            if ($image != null){
+                File::delete(public_path('images/'.$image->name));
+                $post->image()->delete();
+            }
         }
-
+        
         $post->save();
 
         session()->flash('message', 'Post was updated.');
@@ -139,9 +149,11 @@ class PostController extends Controller
     {
         $post = Post::findOrFail($id);
         if (Gate::allows('delete-post', $post)) {
-            File::delete(public_path('images/'.$post->image));
+            if ($post->image != null){
+                File::delete(public_path('images/'.$post->image->name));
+                $post->image()->delete();
+            }
             $post->delete();
-
             session()->flash('message', 'Post was deleted.');
             return redirect()->route('posts.index');
         }else{
