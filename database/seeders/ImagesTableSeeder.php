@@ -27,7 +27,7 @@ class ImagesTableSeeder extends Seeder
         $image->name = "WaterProfileImage2.jpg";
         $profile->image()->save($image);
 
-        $post = Post::find(1);
+        $post = Post::find(2);
         $image = new Image;
         $image->name = "ExampleImage.png";
         $post->image()->save($image);
