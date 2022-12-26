@@ -51,4 +51,14 @@
 
     </ul>
 
+    <h2>Likes</h2>
+
+    <ul>
+
+        @foreach ($user->likes()->get() as $post)
+            <li><a href = "{{route('posts.show', ['id'=> $post->id])}}">{{$post->title}}</a></li>
+        @endforeach
+
+    </ul>
+
 @endsection
