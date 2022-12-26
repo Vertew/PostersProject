@@ -48,6 +48,8 @@ class CommentController extends Controller
     public function show($id)
     {
         $comment = Comment::findOrFail($id);
+        $comment->views += 1;
+        $comment->save();
         return view('comments.show', ['comment' => $comment]);
     }
 
