@@ -27,7 +27,6 @@ class PostsTableSeeder extends Seeder
         $post->title = "Image Post!!!!";
         $post->post_text = "This is a post with an image";
         $post->views = 15;
-        $post->image = "mikeimage.png";
         $post->user_id = 2;
         $post->save();
 

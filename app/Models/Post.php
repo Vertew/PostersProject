@@ -21,4 +21,9 @@ class Post extends Model
         return $this->belongsToMany(User::class);
     }
 
+    public function image()
+    {
+        return $this->morphOne(Image::class, 'imageable');
+    }
+
 }

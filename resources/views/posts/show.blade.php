@@ -16,6 +16,8 @@
 
         @if ($post->image != null)
             <li> <img src={{ asset('images/'.$post->image) }}> </li>
+        @else
+            <li> <p>No Image</p> </li>
         @endif
 
         <li>{{$post->views}} Views</li>
