@@ -1,15 +1,26 @@
 <div>
     <h2>Notifications</h2>
         <ul>
-            @foreach ($user->unreadNotifications as $notification)
+            @forelse ($user->unreadNotifications as $notification)
                 @if ($notification->type == "App\Notifications\PostLiked")
-                    <li>[{{ $notification->created_at }}] {{$notification->data['username']}} liked your post: {{$notification->data['title']}}</li>
+                    <li>[{{ $notification->created_at }}] 
+                        <a href="{{route('users.show', ['id'=> $notification->data['user_id']])}}">{{$notification->data['username']}}</a> liked your post: 
+                        <a href = "{{route('posts.show', ['id'=>$notification->data['post_id']])}}">{{$notification->data['title']}}</a>
+                    </li>
                 @elseif ($notification->type == "App\Notifications\CommentReceived")
-                    <li>[{{ $notification->created_at }}] {{$notification->data['username']}} commented on your post: {{$notification->data['title']}}</li>
+                    <li>[{{ $notification->created_at }}] 
+                        <a href="{{route('users.show', ['id'=> $notification->data['user_id']])}}">{{$notification->data['username']}}</a> commented on your post: 
+                        <a href = "{{route('posts.show', ['id'=>$notification->data['post_id']])}}">{{$notification->data['title']}}</a>
+                    </li>
                 @elseif ($notification->type == "App\Notifications\CommentViewed")
-                    <li>[{{ $notification->created_at }}] {{$notification->data['username']}} saw your comment!: {{$notification->data['comment_text']}}</li>
+                    <li>[{{ $notification->created_at }}] 
+                        <a href="{{route('users.show', ['id'=> $notification->data['user_id']])}}">{{$notification->data['username']}}</a> saw your comment!: 
+                        <a href = "{{route('comments.show', ['id'=>$notification->data['comment_id']])}}">{{$notification->data['comment_text']}}</a>
+                    </li>
                 @endif
                 <button wire:click="mark_read('{{$notification->id}}')">Mark as read</button>
-            @endforeach
+            @empty
+                No new notifications at the moment.
+            @endforelse
         </ul>
 </div>

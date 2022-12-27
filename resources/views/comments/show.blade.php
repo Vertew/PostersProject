@@ -4,6 +4,10 @@
 
 @section('content')
 
+    <a href="{{route('posts.show', ['id'=> $comment->post->id])}}">
+        <button type="button">See Post</button>
+    </a>
+
     <a href="{{url()->previous()}}">
         <button type="button">Back</button>
     </a>
