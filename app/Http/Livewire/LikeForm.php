@@ -22,7 +22,9 @@ class LikeForm extends Component
 
         if (!($this->post->likes()->where('id', $this->user->id)->exists())){
             $this->post->likes()->attach($this->user);
-            $this->post->user->notify(new PostLiked($this->post, $this->user));
+            if($this->post->user != $this->user){
+                $this->post->user->notify(new PostLiked($this->post, $this->user));
+            }
         }else{
             $this->post->likes()->detach($this->user);
         }

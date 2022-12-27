@@ -46,7 +46,11 @@ class CommentForm extends Component
             $this->post = Post::find($this->post->id);
 
             // Notify post author that they have recieved a comment
-            $this->post->user->notify(new CommentReceived($this->post, User::find(Auth::id())));
+            $current_user = User::find(Auth::id());
+            if($this->post->user != $current_user)
+            {
+                $this->post->user->notify(new CommentReceived($this->post, $current_user));
+            }
 
         }else{
             session()->flash('message', 'You do not have permission to post a comment.');

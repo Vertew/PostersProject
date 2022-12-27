@@ -32,7 +32,9 @@
 
     </ul>
 
-    <livewire:notification-form :user="$user">
+    @if(Auth::id() == $user->id)
+        <livewire:notification-form :user="$user">
+    @endif
 
     <h2>Posts</h2>
 

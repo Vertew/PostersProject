@@ -53,7 +53,12 @@ class CommentController extends Controller
         $comment = Comment::findOrFail($id);
         $comment->views += 1;
         $comment->save();
-        $comment->user->notify(new CommentViewed($comment, User::find(Auth::id())));
+
+        $current_user = User::find(Auth::id());
+        if($comment->user != $current_user)
+        {
+            $comment->user->notify(new CommentViewed($comment, $current_user));
+        }
         return view('comments.show', ['comment' => $comment]);
     }
 
