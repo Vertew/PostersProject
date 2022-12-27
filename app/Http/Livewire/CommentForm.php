@@ -4,8 +4,10 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use App\Models\Comment;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
+use App\Notifications\CommentReceived;
 
 use App\Models\Post;
 
@@ -42,6 +44,10 @@ class CommentForm extends Component
 
             // Updating post so changes are displayed instantly
             $this->post = Post::find($this->post->id);
+
+            // Notify post author that they have recieved a comment
+            $this->post->user->notify(new CommentReceived($this->post, User::find(Auth::id())));
+
         }else{
             session()->flash('message', 'You do not have permission to post a comment.');
             return redirect()->route('posts.show', ['id'=> $this->post->id]);

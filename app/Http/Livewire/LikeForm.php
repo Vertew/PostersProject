@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use App\Models\Post;
 use App\Models\User;
+use App\Notifications\PostLiked;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 
@@ -21,6 +22,7 @@ class LikeForm extends Component
 
         if (!($this->post->likes()->where('id', $this->user->id)->exists())){
             $this->post->likes()->attach($this->user);
+            $this->post->user->notify(new PostLiked($this->post, $this->user));
         }else{
             $this->post->likes()->detach($this->user);
         }

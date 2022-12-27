@@ -8,6 +8,8 @@
         <button type="button">Back</button>
     </a>
 
+    <h2>Info</h2>
+
     <a href="{{route('profiles.show', ['id'=> $user->profile->id])}}">View Profile</a>
 
     <ul>
@@ -20,7 +22,7 @@
 
     </ul>
 
-    <h2>Roles</h2>
+    <h3>Roles</h3>
 
     <ul>
 
@@ -29,6 +31,8 @@
         @endforeach
 
     </ul>
+
+    <livewire:notification-form :user="$user">
 
     <h2>Posts</h2>
 
