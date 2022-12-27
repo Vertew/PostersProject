@@ -1,5 +1,6 @@
 <div>
     <h2>Notifications</h2>
+    <button wire:click="mark_all_read">Mark all as read</button>
         <ul>
             @forelse ($user->unreadNotifications as $notification)
                 @if ($notification->type == "App\Notifications\PostLiked")

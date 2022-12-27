@@ -17,6 +17,12 @@ class NotificationForm extends Component
         $this->user = User::find(Auth::id());
     }
 
+    public function mark_all_read()
+    {
+        $this->user->unreadNotifications->markAsRead();
+        $this->user = User::find(Auth::id());
+    }
+
     public function render()
     {
         return view('livewire.notification-form', ['user' => $this->user]);
