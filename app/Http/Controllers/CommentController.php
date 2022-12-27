@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Comment;
+use App\Models\User;
+use App\Notifications\CommentViewed;
 
 class CommentController extends Controller
 {
@@ -50,6 +53,7 @@ class CommentController extends Controller
         $comment = Comment::findOrFail($id);
         $comment->views += 1;
         $comment->save();
+        $comment->user->notify(new CommentViewed($comment, User::find(Auth::id())));
         return view('comments.show', ['comment' => $comment]);
     }
 

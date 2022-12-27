@@ -6,6 +6,8 @@
                     <li>[{{ $notification->created_at }}] {{$notification->data['username']}} liked your post: {{$notification->data['title']}}</li>
                 @elseif ($notification->type == "App\Notifications\CommentReceived")
                     <li>[{{ $notification->created_at }}] {{$notification->data['username']}} commented on your post: {{$notification->data['title']}}</li>
+                @elseif ($notification->type == "App\Notifications\CommentViewed")
+                    <li>[{{ $notification->created_at }}] {{$notification->data['username']}} saw your comment!: {{$notification->data['comment_text']}}</li>
                 @endif
                 <button wire:click="mark_read('{{$notification->id}}')">Mark as read</button>
             @endforeach
