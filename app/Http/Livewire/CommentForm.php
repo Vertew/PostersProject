@@ -61,6 +61,6 @@ class CommentForm extends Component
 
     public function render()
     {
-        return view('livewire.comment-form', ['comments' => $this->post->comments]);
+        return view('livewire.comment-form', ['comments' => $this->post->comments->sortByDesc('created_at')]);
     }
 }

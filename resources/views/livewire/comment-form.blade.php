@@ -1,5 +1,6 @@
-<div>
+<link rel="stylesheet" href="{{asset('/css/app.css')}}">
 
+<div>
     <h3>Add comment</h3>
 
     <form wire:submit.prevent="save">
@@ -12,11 +13,11 @@
     <h2>Comments</h2>
 
     @foreach ($comments as $comment)
-        <li>Poster: <a style="color:rgb(0, 0, 0);" href="{{route('users.show', ['id'=> $comment->user->id])}}">{{$comment->user->profile->name ?? $comment->user->username}} </a></li>
-        <li><a href = "{{route('comments.show', ['id'=> $comment->id])}}">{{$comment->comment_text}}</a></li>
-        <li>Views: {{$comment->views}}</li>
-        <p> </p>
+        <ul>
+            <li><a href="{{route('users.show', ['id'=> $comment->user->id])}}">{{$comment->user->profile->name ?? $comment->user->username}} </a></li>
+            <li><a style='text-align: left' href = "{{route('comments.show', ['id'=> $comment->id])}}">{{$comment->comment_text}}</a></li>
+            <li>Views: {{$comment->views}}</li>
+        </ul>
     @endforeach
-    
 
 </div>

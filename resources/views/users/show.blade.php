@@ -4,10 +4,6 @@
 
 @section('content')
 
-    <a href="{{url()->previous()}}">
-        <button type="button">Back</button>
-    </a>
-
     <a href="{{route('profiles.show', ['id'=> $user->profile->id])}}">
         <button type="button">View Profile</button>
     </a>
@@ -43,7 +39,7 @@
     <h2>Posts</h2>
 
     <div>
-        @foreach ($user->posts as $post)
+        @foreach ($user->posts->sortByDesc('created_at') as $post)
         <ul>
             <li><a style = 'text-align: left' href = "{{route('posts.show', ['id'=> $post->id])}}"> {{$post->post_text}}</a></li>
         </ul>
@@ -53,10 +49,10 @@
     <h2>Comments</h2>
 
     <div>
-        @foreach ($user->comments as $comment)
+        @foreach ($user->comments->sortByDesc('created_at') as $comment)
         <ul>
             <li><a href = "{{route('posts.show', ['id'=> $comment->post->id])}}">Posted under: {{$comment->post->title}}</a></li>
-            <li><a href = "{{route('comments.show', ['id'=> $comment->id])}}">{{$comment->comment_text}}</a></li>
+            <li><a style = 'text-align: left' href  = "{{route('comments.show', ['id'=> $comment->id])}}">{{$comment->comment_text}}</a></li>
         </ul>
         @endforeach
     </div>

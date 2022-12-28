@@ -1,5 +1,3 @@
-<p style='margin: 0px' >
+<link rel="stylesheet" href="{{asset('/css/app.css')}}">
 
-{{ $likes }} Likes <button wire:click="increment">Like</button>
-
-</p>
+<p style='margin: 0px'>{{ $likes }} Likes <button wire:click="increment">Like</button></p>
