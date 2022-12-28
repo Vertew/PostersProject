@@ -1,5 +1,6 @@
 <div>
 
+<div>
     <h3>Add comment</h3>
 
     <form wire:submit.prevent="save">

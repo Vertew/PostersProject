@@ -15,7 +15,7 @@
     </a>
 
     <div>
-        @foreach ($posts as $post)
+        @foreach ($posts->sortByDesc('created_at') as $post)
             <ul>
                 <li><a href="{{route('users.show', ['id'=> $post->user->id])}}">{{$post->user->profile->name ?? $post->user->username}} </a></li>
                 <li><a style='text-align: left' href = "{{route('posts.show', ['id'=> $post->id])}}"> {{$post->post_text}}</a></li>
@@ -24,6 +24,4 @@
             </ul>
         @endforeach
     </div>
-
-
 @endsection

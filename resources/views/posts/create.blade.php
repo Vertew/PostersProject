@@ -6,7 +6,7 @@
 
     <h2>Compose a post</h2>
 
-    <div id = 'main'>
+    <div>
         <form method="POST" action="{{ route('posts.store') }}" enctype="multipart/form-data">
             @csrf
             <h3>Title: <input type = "text" name = "title" value = "{{old('title')}}"></h3>
