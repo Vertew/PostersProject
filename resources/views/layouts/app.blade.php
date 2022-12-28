@@ -16,14 +16,23 @@
 
         <h1>Posters @yield('title')</h1>
 
-        <form method="POST" action="{{ route('login.logout') }}">
-            @csrf
-            <input type = "submit" value = "Logout">
-        </form>
-
-        <a href="{{route('posts.index')}}">
-            <button type="button">Home</button>
-        </a>
+        @if(Auth::check())
+            <form method="POST" action="{{ route('login.logout') }}">
+                @csrf
+                <input type = "submit" value = "Logout">
+            </form>
+            <a href="{{route('users.show', ['id'=> Auth::id()])}}">
+                <button type="button">My Account</button>
+            </a>
+            @if(request()->route()->uri != 'posts')
+                <a href="{{route('posts.index')}}">
+                    <button type="button">Home</button>
+                </a>
+            @endif
+            <a href="{{url()->previous()}}">
+                <button type="button">Back</button>
+            </a>
+        @endif
 
         @if ($errors->any())
             <div>

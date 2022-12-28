@@ -4,14 +4,10 @@
 
 @section('content')
 
-    <a href="{{route('users.show', ['id'=> Auth::id()])}}">
-        <button type="button">My Account</button>
-    </a>
-
     <h2>Home</h2>
 
     <a href="{{route('posts.create')}}">
-        <button type="button">Compose post</button>
+        <button type="button">Make a new post</button>
     </a>
 
     <div>
