@@ -11,13 +11,17 @@
     </a>
 
     <div>
-        @foreach ($posts->sortByDesc('created_at') as $post)
+        @foreach ($posts as $post)
             <ul>
                 <li><a href="{{route('users.show', ['id'=> $post->user->id])}}">{{$post->user->profile->name ?? $post->user->username}} </a></li>
                 <li><a style='text-align: left' href = "{{route('posts.show', ['id'=> $post->id])}}"> {{$post->post_text}}</a></li>
                 <li><livewire:like-form :post="$post"></li>
                 <li>{{$post->views}} Views</li>
+                <li>{{$post->created_at}}</li>
             </ul>
         @endforeach
     </div>
+
+    {{ $posts->links() }}
+
 @endsection

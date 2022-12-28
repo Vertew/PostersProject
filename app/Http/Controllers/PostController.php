@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File; 
 use Illuminate\Support\Facades\Gate;
+use App\Helpers\PaginationHelper;
 use App\Models\Post;
 use App\Models\Image;
 
@@ -18,8 +19,9 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::get();
-        return view('posts.index', ['posts' => $posts]);
+        $posts = Post::get()->sortByDesc('created_at');
+        $paginated = PaginationHelper::paginate($posts, 15);
+        return view('posts.index', ['posts' => $paginated]);
     }
 
     /**
