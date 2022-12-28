@@ -34,7 +34,7 @@ class AuthServiceProvider extends ServiceProvider
         Rules:
 
         Admins can do anything aside from editing personal user information of other accounts e.g. emails and passwords.
-        Moderators can do anything apart from editing other peoples' content.
+        Moderators can do anything apart from editing other peoples' content and deleting accounts.
         Premium users are allowed have custom profile pictures.
         Verified users are allowed to make and edit their own comments and posts.
         Standard users can post, comment and alter their profile information.

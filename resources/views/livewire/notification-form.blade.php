@@ -1,6 +1,4 @@
-<link rel="stylesheet" href="{{asset('/css/app.css')}}">
-
-<div id = 'main'>
+<div>
     <button wire:click="mark_all_read">Mark all as read</button>
         <ul>
             @forelse ($user->unreadNotifications as $notification)
@@ -22,7 +20,7 @@
                 @endif
                 <button wire:click="mark_read('{{$notification->id}}')">Mark as read</button>
             @empty
-                <p>No new notifications at the moment.</p>
+                No new notifications at the moment.
             @endforelse
         </ul>
 </div>
