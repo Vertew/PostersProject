@@ -18,7 +18,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::get();
+        $posts = Post::get()->sortByDesc('created_at');
         return view('posts.index', ['posts' => $posts]);
     }
 
@@ -47,7 +47,7 @@ class PostController extends Controller
     {
 
         $validatedData = $request->validate([
-            'title' => 'nullable|max:20',
+            'title' => 'min:1|max:20',
             'post_text' => 'nullable|max:1000',
             'image' => 'nullable|image',
         ]);
@@ -111,7 +111,7 @@ class PostController extends Controller
     {
         $post = Post::findOrFail($id);
         $validatedData = $request->validate([
-            'title' => 'nullable|max:20',
+            'title' => 'min:1|max:20',
             'post_text' => 'nullable|max:1000',
             'image' => 'nullable|image',
         ]);

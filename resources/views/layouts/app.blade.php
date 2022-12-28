@@ -6,12 +6,15 @@
         <meta charset="UTF-8">
         <title>Posters - @yield('title')</title>
 
+        <link rel="stylesheet" href="{{asset('/css/app.css')}}">
+
         @livewireStyles
     </head>
 
+
     <body>
 
-        <h1>Posters - @yield('title')</h1>
+        <h1>Posters @yield('title')</h1>
 
         <form method="POST" action="{{ route('login.logout') }}">
             @csrf
@@ -37,9 +40,7 @@
             <p><b>{{session('message')}}</b></p>
         @endif
 
-        <div>
-            @yield('content')
-        </div>
+        @yield('content')
 
         @livewireScripts
 

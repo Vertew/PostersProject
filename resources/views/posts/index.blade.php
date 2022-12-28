@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Posts')
+@section('title')
 
 @section('content')
 
@@ -8,22 +8,23 @@
         <button type="button">My Account</button>
     </a>
 
-    <h2>Check out the latest posts!!</h2>
+    <h2>Home</h2>
 
     <a href="{{route('posts.create')}}">
         <button type="button">Compose post</button>
     </a>
 
-    <ul>
-
+    <div>
         @foreach ($posts as $post)
-            <li>Poster: <a style="color:rgb(0, 0, 0);" href="{{route('users.show', ['id'=> $post->user->id])}}">{{$post->user->profile->name ?? $post->user->username}} </a></li>
-            <li><a href = "{{route('posts.show', ['id'=> $post->id])}}"> {{$post->post_text}}</a></li>
-            <li>{{$post->views}} Views <livewire:like-form :post="$post"></li>
-            <p> </p>
+            <ul>
+                <li><a href="{{route('users.show', ['id'=> $post->user->id])}}">{{$post->user->profile->name ?? $post->user->username}} </a></li>
+                <li><a style='text-align: left' href = "{{route('posts.show', ['id'=> $post->id])}}"> {{$post->post_text}}</a></li>
+                <li><livewire:like-form :post="$post"></li>
+                <li>{{$post->views}} Views</li>
+            </ul>
         @endforeach
+    </div>
 
-    </ul>
 
 
 @endsection
