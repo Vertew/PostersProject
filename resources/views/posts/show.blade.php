@@ -4,7 +4,7 @@
 
 @section('content')
 
-    <div>
+    <div id = 'main'>
         <ul>
             <li><h2>{{$post->title}}</h2></li>
             <li><a href="{{route('users.show', ['id'=> $post->user->id])}}">Poster: {{$post->user->profile->name ?? $post->user->username}} </a></li>
@@ -13,7 +13,7 @@
                 <li> <img src={{ asset('images/'.$post->image->name) }}> </li>
             @endif
             <li>{{$post->views}} Views</li>
-            <li><livewire:like-form :post="$post"> </li>
+            <li><livewire:like-form :post="$post"></li>
         </ul>
     </div>
 

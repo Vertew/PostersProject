@@ -2,7 +2,7 @@
     <link rel="stylesheet" href="{{asset('/css/app.css')}}">
 @endpush
 
-<div>
+<div id = 'main'>
 
     <h3>Add comment</h3>
 

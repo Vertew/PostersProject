@@ -9,7 +9,7 @@ h1 {
   color:rgb(82, 82, 82)
 }
 
-div {
+#main {
   margin: auto;
   margin-top: 5px;
   width: 500px;
@@ -35,9 +35,10 @@ a:hover{
 ul {
   margin: auto;
   list-style-type: none;
+  border-radius: 4px;
   padding: 0;
   border: 1px solid #ddd;
-  margin-bottom: 2px;
+  margin-bottom: 5px;
 }
 
 ul li {
@@ -117,8 +118,15 @@ textarea {
   height: 150px;
   padding: 12px 20px;
   box-sizing: border-box;
-  border: 1px solid #ccc;
+  background-color: rgb(245, 245, 245);
+  border: 2px solid #ccc;
   border-radius: 4px;
   resize: none;
   font-family: verdana;
+}
+
+img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }

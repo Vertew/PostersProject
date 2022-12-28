@@ -6,7 +6,7 @@
 
     <h3>Users who liked this post</h3>
     
-    <div>
+    <div id = 'main'>
         <ul>
             @foreach ($users as $user)
                 <li><a style="color:rgb(0, 0, 0);" href="{{route('users.show', ['id'=> $user->id])}}">{{$user->profile->name ?? $user->username}} </a></li>

@@ -1,4 +1,4 @@
-<div>
+<div id = 'main'>
     <button wire:click="mark_all_read">Mark all as read</button>
         <ul>
             @forelse ($user->unreadNotifications as $notification)

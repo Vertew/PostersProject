@@ -10,7 +10,7 @@
         <button type="button">Make a new post</button>
     </a>
 
-    <div>
+    <div id = 'main'>
         @foreach ($posts as $post)
             <ul>
                 <li><a href="{{route('users.show', ['id'=> $post->user->id])}}">{{$post->user->profile->name ?? $post->user->username}} </a></li>

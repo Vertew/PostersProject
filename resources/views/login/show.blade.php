@@ -6,7 +6,7 @@
 
     <h3>Enter login details</h3>
 
-    <div>
+    <div id = 'main'>
         <form method="POST" action="{{ route('login.authenticate') }}">
             @csrf
             <p>Email: <input type = "text" name = "email" value ="{{old('email')}}"></p>

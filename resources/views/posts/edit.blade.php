@@ -4,7 +4,7 @@
 
 @section('content')
 
-    <div>
+    <div id = 'main'>
         <form method="POST" action="{{ route('posts.update' , ['id'=> $post->id])}}" enctype="multipart/form-data">
             @csrf
             <p>Title: <input type = "text" name = "title" value = "{{$post->title}}"></p>
