@@ -4,7 +4,7 @@
 
 @section('content')
 
-    <div>
+    <div id = 'main'>
         <ul>
             <li><a href="{{route('users.show', ['id'=> $comment->user->id])}}">Poster: {{$comment->user->profile->name ?? $comment->user->username}} </a></li>
             <li>{{$comment->comment_text}}</li>

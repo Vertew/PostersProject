@@ -10,7 +10,7 @@
 
     <h2>Info</h2>
 
-    <div>
+    <div id = 'main'>
 
         <h3>General</h3>
 
@@ -38,7 +38,7 @@
 
     <h2>Posts</h2>
 
-    <div>
+    <div id = 'main'>
         @foreach ($user->posts->sortByDesc('created_at') as $post)
         <ul>
             <li><a style = 'text-align: left' href = "{{route('posts.show', ['id'=> $post->id])}}"> {{$post->post_text}}</a></li>
@@ -48,7 +48,7 @@
 
     <h2>Comments</h2>
 
-    <div>
+    <div id = 'main'>
         @foreach ($user->comments->sortByDesc('created_at') as $comment)
         <ul>
             <li><a href = "{{route('posts.show', ['id'=> $comment->post->id])}}">Posted under: {{$comment->post->title}}</a></li>
@@ -59,7 +59,7 @@
 
     <h2>Likes</h2>
 
-    <div>
+    <div id = 'main'>
         @foreach ($user->likes()->get() as $post)
         <ul>
             <li><a href = "{{route('posts.show', ['id'=> $post->id])}}">{{$post->title}}</a></li>

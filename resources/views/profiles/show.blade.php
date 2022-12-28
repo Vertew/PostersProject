@@ -4,7 +4,7 @@
 
 @section('content')
 
-    <div>
+    <div id = 'main'>
         <ul>
             @if ($profile->image != null)
                 <li> <img src={{ asset('profile_pictures/'.$profile->image->name) }}> </li>

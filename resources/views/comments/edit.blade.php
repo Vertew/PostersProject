@@ -4,7 +4,7 @@
 
 @section('content')
 
-    <div>
+    <div id = 'main'>
         <form method="POST" action="{{ route('comments.update' , ['id'=> $comment->id])}}" enctype="multipart/form-data">
             @csrf
             <p>Max 500 characters</p>

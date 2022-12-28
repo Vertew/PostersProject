@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="{{asset('/css/app.css')}}">
 
-<div>
+<div id = 'main'>
     <h3>Add comment</h3>
 
     <form wire:submit.prevent="save">
