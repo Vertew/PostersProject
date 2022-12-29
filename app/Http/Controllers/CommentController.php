@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Helpers\PaginationHelper;
 use App\Models\Comment;
 use App\Models\User;
+use App\Models\Post;
 use App\Notifications\CommentViewed;
 
 class CommentController extends Controller
@@ -33,6 +34,19 @@ class CommentController extends Controller
         $user = User::find($id);
         $paginated = PaginationHelper::paginate($comments, 15);
         return view('comments.index', ['comments' => $paginated], ['user' => $user]);
+    }
+
+    /**
+     * Display a listing of the resource belonging to a particular post.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function p_index($id)
+    {
+        $comments = Comment::where('post_id', $id)->get()->sortByDesc('created_at');
+        $post = Post::find($id);
+        $paginated = PaginationHelper::paginate($comments, 15);
+        return view('comments.index', ['comments' => $paginated], ['post' => $post]);
     }
 
     /**

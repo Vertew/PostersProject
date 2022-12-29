@@ -1,6 +1,11 @@
 <div class = "container-md mt-3 mb-3 text-center">
-    <button class = "btn btn-primary mb-2" wire:click="mark_all_read">Mark all as read</button>
-        @forelse ($user->unreadNotifications as $notification)
+    <a href="{{route('users.notifications', ['id'=> $user->id])}}">
+        <button class="btn btn-primary" type="button">View All Notifications
+            <span class="badge bg-danger">{{$notif_count}}</span>
+        </button>
+    </a>
+    <button class = "btn btn-primary" wire:click="mark_all_read">Mark all as read</button>
+        @forelse ($unreadNotifications as $notification)
             <div class="container-md mt-3">  
                 <div class="list-group">
                     <li class="list-group-item"><button class = "btn btn-primary mb-2"  wire:click="mark_read('{{$notification->id}}')">Mark as read</button></li>

@@ -36,6 +36,8 @@ Route::post('/users', [UserController::class, 'store']) -> name('users.store');
 
 Route::get('/users/{id}', [UserController::class, 'show']) -> name('users.show') -> middleware('auth');
 
+Route::get('/users/notifications/{id}', [UserController::class, 'notifications']) -> name('users.notifications');
+
 Route::get('/users/likes/{id}', [UserController::class, 'likes']) -> name('users.likes') -> middleware('auth');
 
 Route::get('/posts', [PostController::class, 'index']) -> name('posts.index') -> middleware('auth');
@@ -66,8 +68,10 @@ Route::get('/comments/{id}', [CommentController::class, 'show']) -> name('commen
 
 Route::delete('/comments/{id}', [CommentController::class, 'destroy']) -> name('comments.destroy') -> middleware('auth');
 
-Route::get('/comments/index/{id}', [CommentController::class, 'u_index']) -> name('comments.user_index') -> middleware('auth');
-
 Route::get('/comments/edit/{id}', [CommentController::class, 'edit']) -> name('comments.edit') -> middleware('auth');
 
 Route::post('/comments/update/{id}', [CommentController::class, 'update']) -> name('comments.update') -> middleware('auth');
+
+Route::get('/comments/index/user/{id}', [CommentController::class, 'u_index']) -> name('comments.user_index') -> middleware('auth');
+
+Route::get('/comments/index/post/{id}', [CommentController::class, 'p_index']) -> name('comments.post_index') -> middleware('auth');

@@ -5,14 +5,20 @@
 @section('content')
 
         <div class = "text-center">
-            <h2 class='display-3'>{{$user->username}}'s Comments</h2>
+            @if(request()->route()->uri == 'comments/index/user/{id}')
+                <h2 class='display-3'>{{$user->username}}'s Comments</h2>
+            @elseif(request()->route()->uri == 'comments/index/post/{id}')
+                <h2 class='display-3'>Comments for {{$post->title}}</h2>
+            @endif
         </div>
   
         @foreach ($comments as $comment)
             <div class="container-md mt-3">  
                 <div class="list-group">
-                    <!--<a class="list-group-item list-group-item-action" href="{{route('users.show', ['id'=> $user->id])}}"><strong>{{$user->profile->name ?? $user->username}}</strong></a>-->
-                    <a class="list-group-item list-group-item-action" style='text-align: left' href = "{{route('comments.show', ['id'=> $comment->id])}}"> {{$comment->comment_text}}</a>
+                    @if(request()->route()->uri == 'comments/index/post/{id}')
+                        <a class="list-group-item list-group-item-action" href="{{route('users.show', ['id'=> $comment->user->id])}}"><strong>{{$comment->user->profile->name ?? $comment->user->username}}</strong></a>
+                    @endif
+                    <a class="list-group-item list-group-item-action" href = "{{route('comments.show', ['id'=> $comment->id])}}"> {{$comment->comment_text}}</a>
                     <li class="list-group-item">{{$comment->views}} Views</li>
                     <li class="list-group-item">{{$comment->created_at}}</li>
                 </div>

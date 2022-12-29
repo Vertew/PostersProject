@@ -107,11 +107,20 @@ class UserController extends Controller
         //
     }
 
+    // Displays the users' likes
     public function likes($id)
     {
         $user = User::findOrFail($id);
         $paginated = PaginationHelper::paginate($user->likes()->get()->sortByDesc('created_at'), 10);
         return view('users.likes', ['posts'=> $paginated], ['user' => $user]);
+    }
+
+    // Displays the users' notifications
+    public function notifications($id)
+    {
+        $user = User::findOrFail($id);
+        $paginated = PaginationHelper::paginate($user->unreadNotifications->sortByDesc('created_at'), 10);
+        return view('users.notifications', ['user'=> $user], ['unreadNotifications' => $paginated]);
     }
 
     /**

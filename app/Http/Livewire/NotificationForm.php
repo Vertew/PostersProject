@@ -25,6 +25,7 @@ class NotificationForm extends Component
     public function render()
     {
         $this->user = User::find(Auth::id());
-        return view('livewire.notification-form', ['user' => $this->user]);
+        return view('livewire.notification-form', ['unreadNotifications' => $this->user->unreadNotifications->take(10)], 
+        ['notif_count'=>$this->user->unreadNotifications->count()], ['user' => $this->user]);
     }
 }
