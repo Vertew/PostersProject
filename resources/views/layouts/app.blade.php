@@ -57,7 +57,9 @@
         @endif
 
         @if (session('message'))
-            <p><b>{{session('message')}}</b></p>
+            <div class="alert alert-success mt-3 container-md">
+                <p><strong>{{session('message')}}</strong></p>
+            </div>
         @endif
 
         @yield('content')

@@ -4,14 +4,16 @@
 
 @section('content')
 
-    <h3>Users who liked this post</h3>
+    <div class="container-md mt-3 text-center">  
+        <h3 class='display-6'>Users who liked this post</h3>
+    </div>
     
-    <div id = 'main'>
-        <ul>
+    <div class="container-md mt-3 text-center">  
+        <div class="list-group">
             @foreach ($users as $user)
-                <li><a style="color:rgb(0, 0, 0);" href="{{route('users.show', ['id'=> $user->id])}}">{{$user->profile->name ?? $user->username}} </a></li>
+                <a class="list-group-item list-group-item-action" href="{{route('users.show', ['id'=> $user->id])}}">{{$user->profile->name ?? $user->username}} </a>
             @endforeach
-        </ul>
+        </div>
     </div>
 
 @endsection

@@ -4,22 +4,23 @@
 
 @section('content')
 
-    <div id = 'main'>
-        <ul>
-            <li><a href="{{route('users.show', ['id'=> $comment->user->id])}}">Poster: {{$comment->user->profile->name ?? $comment->user->username}} </a></li>
-            <li>{{$comment->comment_text}}</li>
-            <li>Views: {{$comment->views}}</li>
-        </ul>
+    <div class="container-md mt-3">  
+        <div class="list-group">
+            <a class="list-group-item list-group-item-action text-center" href="{{route('users.show', ['id'=> $comment->user->id])}}"><strong>{{$comment->user->profile->name ?? $comment->user->username}}</strong></a>
+            <li class="list-group-item">{{$comment->comment_text}}</li>
+            <li class="list-group-item text-center">Views: {{$comment->views}}</li>
+        </div>
     </div>
 
-    <a href="{{route('comments.edit', ['id'=> $comment->id])}}">
-        <button type="button">Edit comment</button>
-    </a>
+    <div class="container-md mt-3 text-center"> 
+        <a href="{{route('comments.edit', ['id'=> $comment->id])}}">
+            <button class="btn btn-primary mb-2" type="button">Edit comment</button>
+        </a>
 
-    <form method="POST" action="{{ route('comments.destroy', ['id'=> $comment->id])}}">
-        @csrf
-        @method('DELETE')
-        <input type = "submit" value = "Delete Comment">
-    </form>
-
+        <form method="POST" action="{{ route('comments.destroy', ['id'=> $comment->id])}}">
+            @csrf
+            @method('DELETE')
+            <input class="btn btn-danger" type = "submit" value = "Delete Comment">
+        </form>
+    </div>
 @endsection
