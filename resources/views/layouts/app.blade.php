@@ -6,13 +6,23 @@
         <meta charset="UTF-8">
         <title>Posters - @yield('title')</title>
 
-        <link rel="stylesheet" href="{{asset('/css/app.css')}}">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Styles-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- Scripts-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+
+        <!--<link rel="stylesheet" href="{{asset('/css/app.css')}}"> My original CSS file-->
 
         @livewireStyles
     </head>
 
 
     <body>
+
+        <div class= "container-fluid p-5 bg-primary text-white text-center">
 
         <h1>Posters @yield('title')</h1>
 
@@ -33,6 +43,8 @@
                 <button type="button">Back</button>
             </a>
         @endif
+
+        </div>
 
         @if ($errors->any())
             <div>

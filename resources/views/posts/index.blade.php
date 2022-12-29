@@ -9,9 +9,9 @@
     <a href="{{route('posts.create')}}">
         <button type="button">Make a new post</button>
     </a>
-
-    <div id = 'main'>
+  
         @foreach ($posts as $post)
+        <div class="container mt-3">  
             <ul>
                 <li><a href="{{route('users.show', ['id'=> $post->user->id])}}">{{$post->user->profile->name ?? $post->user->username}} </a></li>
                 <li><a style='text-align: left' href = "{{route('posts.show', ['id'=> $post->id])}}"> {{$post->post_text}}</a></li>
@@ -19,8 +19,9 @@
                 <li>{{$post->views}} Views</li>
                 <li>{{$post->created_at}}</li>
             </ul>
+        </div>
         @endforeach
-    </div>
+    
 
     {{ $posts->links() }}
 

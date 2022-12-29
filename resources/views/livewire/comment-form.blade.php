@@ -1,7 +1,3 @@
-@push('styles')
-    <link rel="stylesheet" href="{{asset('/css/app.css')}}">
-@endpush
-
 <div id = 'main'>
 
     <h3>Add comment</h3>
