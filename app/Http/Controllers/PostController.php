@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Gate;
 use App\Helpers\PaginationHelper;
 use App\Models\Post;
+use App\Models\User;
 use App\Models\Image;
 
 class PostController extends Controller
@@ -22,6 +23,19 @@ class PostController extends Controller
         $posts = Post::get()->sortByDesc('created_at');
         $paginated = PaginationHelper::paginate($posts, 15);
         return view('posts.index', ['posts' => $paginated]);
+    }
+
+    /**
+     * Display a listing of the resource belonging to a particular user.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function u_index($id)
+    {
+        $posts = Post::where('user_id', $id)->get()->sortByDesc('created_at');
+        $user = User::find($id);
+        $paginated = PaginationHelper::paginate($posts, 15);
+        return view('posts.index', ['posts' => $paginated], ['user' => $user]);
     }
 
     /**

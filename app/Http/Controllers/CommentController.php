@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Auth;
+use App\Helpers\PaginationHelper;
 use App\Models\Comment;
 use App\Models\User;
 use App\Notifications\CommentViewed;
@@ -19,6 +20,19 @@ class CommentController extends Controller
     public function index()
     {
         //
+    }
+
+    /**
+     * Display a listing of the resource belonging to a particular user.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function u_index($id)
+    {
+        $comments = Comment::where('user_id', $id)->get()->sortByDesc('created_at');
+        $user = User::find($id);
+        $paginated = PaginationHelper::paginate($comments, 15);
+        return view('comments.index', ['comments' => $paginated], ['user' => $user]);
     }
 
     /**

@@ -1,4 +1,4 @@
-<div class = "container-md mt-3 text-center">
+<div class = "container-md mt-3 mb-3 text-center">
     <button class = "btn btn-primary mb-2" wire:click="mark_all_read">Mark all as read</button>
         @forelse ($user->unreadNotifications as $notification)
             <div class="container-md mt-3">  

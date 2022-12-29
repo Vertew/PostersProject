@@ -19,7 +19,7 @@ use App\Http\Controllers\CommentController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('login');
 });
 
 Route::get('/login', [LoginController::class, 'show']) -> name('login');
@@ -36,6 +36,8 @@ Route::post('/users', [UserController::class, 'store']) -> name('users.store');
 
 Route::get('/users/{id}', [UserController::class, 'show']) -> name('users.show') -> middleware('auth');
 
+Route::get('/users/likes/{id}', [UserController::class, 'likes']) -> name('users.likes') -> middleware('auth');
+
 Route::get('/posts', [PostController::class, 'index']) -> name('posts.index') -> middleware('auth');
 
 Route::get('/posts/create', [PostController::class, 'create']) -> name('posts.create') -> middleware('auth');
@@ -45,6 +47,8 @@ Route::post('/posts', [PostController::class, 'store']) -> name('posts.store') -
 Route::get('/posts/{id}', [PostController::class, 'show']) -> name('posts.show') -> middleware('auth');
 
 Route::delete('/posts/{id}', [PostController::class, 'destroy']) -> name('posts.destroy') -> middleware('auth');
+
+Route::get('/posts/index/{id}', [PostController::class, 'u_index']) -> name('posts.user_index') -> middleware('auth');
 
 Route::get('/posts/edit/{id}', [PostController::class, 'edit']) -> name('posts.edit') -> middleware('auth');
 
@@ -61,6 +65,8 @@ Route::post('/profiles/update/{id}', [ProfileController::class, 'update']) -> na
 Route::get('/comments/{id}', [CommentController::class, 'show']) -> name('comments.show') -> middleware('auth');
 
 Route::delete('/comments/{id}', [CommentController::class, 'destroy']) -> name('comments.destroy') -> middleware('auth');
+
+Route::get('/comments/index/{id}', [CommentController::class, 'u_index']) -> name('comments.user_index') -> middleware('auth');
 
 Route::get('/comments/edit/{id}', [CommentController::class, 'edit']) -> name('comments.edit') -> middleware('auth');
 

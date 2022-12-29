@@ -25,7 +25,7 @@
             </div>
             <input class="btn btn-primary" type = "submit" value = "Post">
 
-            <a class="btn btn-danger" href="{{route('posts.index')}}">Cancel</a>
+            <a class="btn btn-secondary" href="{{route('posts.index')}}">Cancel</a>
         </form>
     </div>
 

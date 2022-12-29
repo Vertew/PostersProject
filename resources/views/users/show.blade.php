@@ -35,8 +35,13 @@
 
     <div class="row">
         <div class="col">
-            <h2 class = 'display-6 text-center'>Posts</h2>
-            @forelse ($user->posts->sortByDesc('created_at') as $post)
+            <h2 class = 'display-6 text-center'>Latest Posts</h2>
+            <div class= "text-center">
+                <a href="{{route('posts.user_index', ['id'=> $user->id])}}">
+                    <button class="btn btn-primary" type="button">View All Posts</button>
+                </a>
+            </div>
+            @forelse ($user->posts->sortByDesc('created_at')->take(10) as $post)
                 <div class="container-md mt-3">  
                     <div class="list-group">
                         <a class="list-group-item list-group-item-action" href = "{{route('posts.show', ['id'=> $post->id])}}"> {{$post->post_text}}</a>
@@ -44,12 +49,17 @@
                     </div>
                 </div>
             @empty
-                <p class="text-center">You haven't posted anything yet.</p>
+                <p class="text-center">No posts yet.</p>
             @endforelse
         </div>
         <div class="col">
-            <h2 class = 'display-6 text-center'>Comments</h2>
-            @forelse ($user->comments->sortByDesc('created_at') as $comment)
+            <h2 class = 'display-6 text-center'>Latest Comments</h2>
+            <div class= "text-center">
+                <a href="{{route('comments.user_index', ['id'=> $user->id])}}">
+                    <button class="btn btn-primary" type="button">View All Comments</button>
+                </a>
+            </div>
+            @forelse ($user->comments->sortByDesc('created_at')->take(10) as $comment)
                 <div class="container-md mt-3">
                     <div class="list-group">
                         <a class="list-group-item list-group-item-action" href = "{{route('posts.show', ['id'=> $comment->post->id])}}">Posted under: <strong>{{$comment->post->title}}</strong></a>
@@ -58,12 +68,17 @@
                     </div>
                 </div>
             @empty
-                <p class="text-center">You haven't commented on anything yet.</p>
+                <p class="text-center">No comments yet.</p>
             @endforelse
         </div>
         <div class="col">
             <h2 class = 'display-6 text-center'>Likes</h2>
-            @forelse ($user->likes()->get() as $post)
+            <div class= "text-center">
+                <a href="{{route('users.likes', ['id'=> $user->id])}}">
+                    <button class="btn btn-primary" type="button">View All Likes</button>
+                </a>
+            </div>
+            @forelse ($user->likes()->get()->take(10) as $post)
                 <div class="container-md mt-3">
                     <div class="list-group">
                         <a class="list-group-item list-group-item-action" href = "{{route('posts.show', ['id'=> $post->id])}}">{{$post->title}}</a>
@@ -71,7 +86,7 @@
                     </div>
                 </div>
             @empty
-                <p class= "text-center">You haven't liked anything yet.</p>
+                <p class= "text-center">No likes yet.</p>
             @endforelse
         </div>
       </div>

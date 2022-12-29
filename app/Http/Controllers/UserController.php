@@ -7,10 +7,12 @@ use App\Models\Profile;
 use App\Models\Post;
 use App\Models\Role;
 use App\Models\Image;
+use App\Helpers\PaginationHelper;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Str;
+
 
 class UserController extends Controller
 {
@@ -103,6 +105,13 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         //
+    }
+
+    public function likes($id)
+    {
+        $user = User::findOrFail($id);
+        $paginated = PaginationHelper::paginate($user->likes()->get()->sortByDesc('created_at'), 10);
+        return view('users.likes', ['posts'=> $paginated], ['user' => $user]);
     }
 
     /**

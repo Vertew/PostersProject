@@ -4,7 +4,7 @@
 
 @section('content')
 
-    <div class = "container-md mt-3">
+    <div class = "container-md mb-3 mt-3">
         <form method="POST" action="{{ route('posts.update' , ['id'=> $post->id])}}" enctype="multipart/form-data">
             @csrf
             <div class="container-md mb-3 mt-3">

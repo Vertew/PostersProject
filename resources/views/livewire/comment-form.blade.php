@@ -1,4 +1,4 @@
-<div class = "mt-5" >
+<div class = "mt-5 mb-3" >
 
     <h3 class='display-6 text-center'>Add comment</h3>
 
