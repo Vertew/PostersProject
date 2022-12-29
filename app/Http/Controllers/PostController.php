@@ -49,8 +49,8 @@ class PostController extends Controller
     {
 
         $validatedData = $request->validate([
-            'title' => 'min:1|max:20',
-            'post_text' => 'nullable|max:1000',
+            'title' => 'min:1|max:50',
+            'post_text' => 'min:1|max:1000',
             'image' => 'nullable|image',
         ]);
 
@@ -113,8 +113,8 @@ class PostController extends Controller
     {
         $post = Post::findOrFail($id);
         $validatedData = $request->validate([
-            'title' => 'min:1|max:20',
-            'post_text' => 'nullable|max:1000',
+            'title' => 'min:1|max:50',
+            'post_text' => 'min:1|max:1000',
             'image' => 'nullable|image',
         ]);
 

@@ -15,11 +15,9 @@
         </ul>
 
         <h3>Roles</h3>
-        <ul>
             @foreach ($user->roles as $role)
-                <li>{{$role->role}}</li>
+                <span class="badge rounded-pill bg-info">{{$role->role}}</span>
             @endforeach
-        </ul>
     </div>
 
     <div class="container-md mt-3 text-center">
@@ -44,7 +42,6 @@
         </div>
         <div class="col">
             <h2 class = 'text-center'>Comments</h2>
-
             <div id = 'main'>
                 @foreach ($user->comments->sortByDesc('created_at') as $comment)
                 <div class="container-md mt-3 border">
