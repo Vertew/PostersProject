@@ -4,14 +4,16 @@
 
 @section('content')
 
-    <h2>Home</h2>
+        <div class = "text-center">
+            <h2 class='display-2'>Home</h2>
 
-    <a href="{{route('posts.create')}}">
-        <button type="button">Make a new post</button>
-    </a>
+            <a href="{{route('posts.create')}}">
+                <button class="btn btn-primary" type="button">Make a new post</button>
+            </a>
+        </div>
   
         @foreach ($posts as $post)
-        <div class="container mt-3">  
+        <div class="container-md mt-3 border">  
             <ul>
                 <li><a href="{{route('users.show', ['id'=> $post->user->id])}}">{{$post->user->profile->name ?? $post->user->username}} </a></li>
                 <li><a style='text-align: left' href = "{{route('posts.show', ['id'=> $post->id])}}"> {{$post->post_text}}</a></li>
@@ -21,8 +23,6 @@
             </ul>
         </div>
         @endforeach
-    
-
     {{ $posts->links() }}
 
 @endsection

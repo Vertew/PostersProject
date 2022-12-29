@@ -1,5 +1,5 @@
-<div id = 'main'>
-    <button wire:click="mark_all_read">Mark all as read</button>
+<div class = "text-center">
+    <button class = "mb-2" wire:click="mark_all_read">Mark all as read</button>
         <ul>
             @forelse ($user->unreadNotifications as $notification)
                 <li style = 'text-align: center'><button  wire:click="mark_read('{{$notification->id}}')">Mark as read</button></li>
@@ -23,7 +23,7 @@
                     </li>
                 @endif
             @empty
-                No new notifications at the moment.
+                <p>No new notifications at the moment.</p>
             @endforelse
         </ul>
 </div>

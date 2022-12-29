@@ -24,7 +24,7 @@
 
         <div class= "container-fluid p-5 bg-primary text-white text-center">
 
-        <h1>Posters @yield('title')</h1>
+        <h1 class = "display-1">Posters @yield('title')</h1>
 
         @if(Auth::check())
             <form method="POST" action="{{ route('login.logout') }}">
@@ -32,7 +32,7 @@
                 <input type = "submit" value = "Logout">
             </form>
             <a href="{{route('users.show', ['id'=> Auth::id()])}}">
-                <button type="button">My Account</button>
+                <button class="btn btn-light" type="button">My Account</button>
             </a>
             @if(request()->route()->uri != 'posts')
                 <a href="{{route('posts.index')}}">
@@ -40,18 +40,18 @@
                 </a>
             @endif
             <a href="{{url()->previous()}}">
-                <button type="button">Back</button>
+                <button class="btn btn-light" type="button">Back</button>
             </a>
         @endif
 
         </div>
 
         @if ($errors->any())
-            <div>
+            <div class="alert alert-danger mt-3 container-md">
                 Submit failed due to the following:
                 <ul>
                     @foreach ($errors->all() as $error)
-                        <li>{{$error}}</li>
+                        <li><strong>{{$error}}</strong></li>
                     @endforeach
                 </ul>
             </div>
