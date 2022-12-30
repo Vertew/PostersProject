@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File; 
 use Illuminate\Support\Facades\Gate;
 use App\Models\Profile;
+use App\Contracts\IP_Locator;
 
 class ProfileController extends Controller
 {
@@ -78,7 +79,7 @@ class ProfileController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id, IP_Locator $ip_locator)
     {
         $validatedData = $request->validate([
             'name' => 'nullable|max:30',
@@ -88,7 +89,14 @@ class ProfileController extends Controller
             'profile_picture' => 'nullable|image',
         ]);
 
+
         $profile = Profile::findOrFail($id);
+
+
+        $ip = fake()->ipv4(); // Generating fake ip with faker to demonstrate the location API being used.
+        $ip_location = $ip_locator->locate($ip); // Using service container to make use of my IP_Locator
+        $city= $ip_location->city();
+        dd($city);
 
         $profile->name = $validatedData['name'];
         $profile->date_of_birth = $validatedData['date_of_birth'];

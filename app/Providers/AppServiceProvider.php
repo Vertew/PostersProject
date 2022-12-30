@@ -4,6 +4,9 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Pagination\Paginator;
+use App\Services\IP_Locator\IpApi;
+use App\Services\IP_Locator\IpInfo;
+use App\Contracts\IP_Locator;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -14,7 +17,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->bind(IP_Locator::class, IpInfo::class);
     }
 
     /**

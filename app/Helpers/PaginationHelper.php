@@ -1,5 +1,7 @@
 <?php
 
+// File from https://stackoverflow.com/questions/65710480/how-can-i-paginate-laravel-collection by Ehsan Rafiee
+
 namespace App\Helpers;
 
 use Illuminate\Container\Container;

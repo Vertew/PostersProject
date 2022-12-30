@@ -23,7 +23,7 @@
                 <input class="btn btn-primary" type = "submit" value = "Submit">
             </div>
             <div class="container-md mb-3 mt-3">
-                <a class="btn btn-danger" href="{{route('users.index')}}">Cancel</a>
+                <a class="btn btn-secondary" href="{{route('users.index')}}">Cancel</a>
             </div>
         </form>
     </div>
