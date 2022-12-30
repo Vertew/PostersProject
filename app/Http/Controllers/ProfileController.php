@@ -92,13 +92,13 @@ class ProfileController extends Controller
 
         $profile = Profile::findOrFail($id);
 
-        // Unfortunately laravel isn't able to get my actual IP adress so for demonstration
-        // I'm generating a fake ip address with faker. If the website were to go into production
-        // this line would be replaced with $request->ip()
+        // Unfortunately laravel isn't able to get my IP adress during development so for demonstration
+        // I'm generating a random fake ip address with faker. If the website were to go into production
+        // this line would be replaced with $ip = $request->ip() to get the ip of the client.
         $ip = fake()->ipv4();
 
-        // Service container used for my IP_Locator class which communicates with IPinfo.
         if($request['location']){
+            // Service container used for my IP_Locator class which communicates with IPinfo.
             $ip_location = $ip_locator->locate($ip);
             $city= $ip_location->city();
             $country= $ip_location->country();

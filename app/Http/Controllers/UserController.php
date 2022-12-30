@@ -46,15 +46,15 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'username' => 'required|max:30',
-            'email' => 'required|email',
+            'username' => 'required|unique:users|max:30',
+            'email' => 'required|unique:users|email',
             'password' => 'required|max:255',
         ]);
 
         $user = new User;
         $user->username = $validatedData['username'];
         $user->email = $validatedData['email'];
-        $user->email_verified_at = now(); // The email isn't actually verified right now, this just marks when the account was created.
+        $user->email_verified_at = now(); // The email isn't actually verified, this is just demonstrative.
         $user->password = Hash::make($validatedData['password']);
         $user->remember_token = Str::random(10);
         $user->save();
