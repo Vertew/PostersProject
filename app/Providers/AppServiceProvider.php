@@ -17,7 +17,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind(IP_Locator::class, IpInfo::class);
+        $this->app->singleton(IP_Locator::class, IpInfo::class);
     }
 
     /**
@@ -27,8 +27,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-
         Paginator::useBootstrapFive();
-
     }
 }

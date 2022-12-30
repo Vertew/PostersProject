@@ -81,27 +81,35 @@ class ProfileController extends Controller
      */
     public function update(Request $request, $id, IP_Locator $ip_locator)
     {
+        // All data here is nullable since it's not required that the user enter any profile info.
         $validatedData = $request->validate([
             'name' => 'nullable|max:30',
             'date_of_birth' => 'nullable|date',
             'status' => 'nullable|max:100',
-            'location' => 'nullable|max:30',
             'profile_picture' => 'nullable|image',
         ]);
 
 
         $profile = Profile::findOrFail($id);
 
+        // Unfortunately laravel isn't able to get my actual IP adress so for demonstration
+        // I'm generating a fake ip address with faker. If the website were to go into production
+        // this line would be replaced with $request->ip()
+        $ip = fake()->ipv4();
 
-        $ip = fake()->ipv4(); // Generating fake ip with faker to demonstrate the location API being used.
-        $ip_location = $ip_locator->locate($ip); // Using service container to make use of my IP_Locator
-        $city= $ip_location->city();
-        dd($city);
+        // Service container used for my IP_Locator class which communicates with IPinfo.
+        if($request['location']){
+            $ip_location = $ip_locator->locate($ip);
+            $city= $ip_location->city();
+            $country= $ip_location->country();
+            $profile->location = $country.', '.$city;
+        }else{
+            $profile->location = null;
+        }
 
         $profile->name = $validatedData['name'];
         $profile->date_of_birth = $validatedData['date_of_birth'];
         $profile->status = $validatedData['status'];
-        $profile->location = $validatedData['location'];
         $image = $profile->image;
         if (Gate::allows('icon-profile', $profile)) {
             if($request['profile_picture'] != null){

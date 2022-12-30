@@ -19,16 +19,21 @@
                 <label for="status">Status:</label>
                 <input class="form-control" type = "text" name = "status" id='status' value = "{{$profile->status}}">
             </div>
+            @if($profile->location != null)
+                <div class="container-md mb-3 mt-3">
+                    <P>Location: {{$profile->location}}</P>
+                </div>
+            @endif
             <div class="container-md mb-3 mt-3">
-                <label for="location">Location:</label>
-                <input class="form-control" type = "text" name = "location" id='location' value = "{{$profile->location}}">
+                <label for="checkbox">Check to include your location (Country, City). Uncheck to remove </label>
+                <input type="checkbox" id="checkbox2" name = "location">
             </div>
             <div class="container-md mb-3 mt-3">
                 <label for="title">Add/change profile picture:</label>
                 <input class="form-control" type = "file" name = "profile_picture">
             </div>
             <div class="container-md mb-3 mt-3">
-                <label for="checkbox2">Check to remove current profile picture: </label>
+                <label for="checkbox2">Check to remove current profile picture </label>
                 <input type="checkbox" id="checkbox2" name = "checkbox">
             </div>
             <div class="container-md mb-3 mt-3">
