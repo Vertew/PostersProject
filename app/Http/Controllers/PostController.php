@@ -80,7 +80,7 @@ class PostController extends Controller
             $image->name = $this->storeImage($request);
             $post->image()->save($image);
         }
-        session()->flash('message', 'New Post was created.');
+        session()->flash('message', 'New post uploaded.');
         return redirect()->route('posts.index');
     }
 

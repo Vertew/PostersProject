@@ -7,8 +7,6 @@ class IP_Location
     private $ip;
     private $city;
     private $country;
-    private $timezone;
-    private $internetProvider;
 
     public function __construct($ip, $city, $country)
     {

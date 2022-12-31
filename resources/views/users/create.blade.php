@@ -7,6 +7,7 @@
     <div class = "container-md mt-3">
         <form method="POST" action="{{ route('users.store') }}">
             @csrf
+            <p>All fields are required</p>
             <div class="container-md mb-3 mt-3">
                 <label for="username" class="form-label">Username:</label>
                 <input class="form-control" type = "text" name = "username" id="username" value ="{{old('username')}}">

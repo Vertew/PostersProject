@@ -6,7 +6,9 @@
     <div class="container-md mt-3 text-center">  
         <div class="list-group">
             <li class="list-group-item" ><h2 class='display-6'>{{$post->title}}</h2></li>
-            <a class="list-group-item list-group-item-action" href="{{route('users.show', ['id'=> $post->user->id])}}"><strong>{{$post->user->profile->name ?? $post->user->username}}</strong></a>
+            <a class="list-group-item list-group-item-action" href="{{route('users.show', ['id'=> $post->user->id])}}">
+                <strong>{{$post->user->profile->name ?? $post->user->username}}</strong>
+            </a>
             <textarea class="list-group-item" rows="10" readonly >{{$post->post_text}}</textarea>
             @if ($post->image != null)
                 <li class="list-group-item" > <img src={{ asset('images/'.$post->image->name) }}> </li>
@@ -30,3 +32,4 @@
     </div>
     <livewire:comment-form :post="$post">
 @endsection
+

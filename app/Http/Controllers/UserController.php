@@ -68,7 +68,7 @@ class UserController extends Controller
 
         $profile->image()->save(new Image);
 
-        session()->flash('message', 'New User was created.');
+        session()->flash('message', 'New account created.');
         return redirect()->route('posts.index');
     }
 

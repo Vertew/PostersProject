@@ -14,7 +14,6 @@ class NotificationForm extends Component
     {
         $notification = $this->user->unreadNotifications->find($id);
         $notification->markAsRead();
-        $this->user = User::find(Auth::id());
     }
 
     public function mark_all_read()

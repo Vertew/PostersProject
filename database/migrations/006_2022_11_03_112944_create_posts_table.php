@@ -18,7 +18,6 @@ return new class extends Migration
             $table->text('title');
             $table->text('post_text');
             $table->bigInteger('views')->unsigned()->default(0);
-            //$table->string('image')->nullable();
             $table->bigInteger('user_id')->unsigned();
 
             $table->foreign('user_id')->references('id')->on('users')
