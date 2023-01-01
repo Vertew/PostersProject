@@ -68,6 +68,7 @@ class ProfileController extends Controller
             return view('profiles.edit', ['profile' => $profile]);
         }else{
             session()->flash('message', "You don't have permission to edit this profile.");
+            session()->flash('alert-class', 'alert-danger');
             return redirect()->route('profiles.show', ['id'=> $profile->id]);
         }
     }
@@ -123,6 +124,7 @@ class ProfileController extends Controller
             session()->flash('message', 'Profile was updated.');
         }elseif($request['profile_picture'] != null || $request['checkbox']){
             session()->flash('message', 'Profile Updated. You do not have permission to alter your profile icon.');
+            session()->flash('alert-class', 'alert-warning');
         }
 
         $profile->save();

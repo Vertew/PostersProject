@@ -103,6 +103,7 @@ class CommentController extends Controller
             return view('comments.edit', ['comment' => $comment]);
         }else{
             session()->flash('message', "You don't have permission to edit this comment.");
+            session()->flash('alert-class', 'alert-danger');
             return redirect()->route('comments.show', ['id'=> $comment->id]);
         }
     }
@@ -117,7 +118,7 @@ class CommentController extends Controller
     public function update(Request $request, $id)
     {
         $validatedData = $request->validate([
-            'comment_text' => 'nullable|max:500',
+            'comment_text' => 'min:1|max:500',
         ]);
 
         $comment = Comment::findOrFail($id);
@@ -148,6 +149,7 @@ class CommentController extends Controller
             return redirect()->route('posts.show', ['id'=> $post_id]);
         }else{
             session()->flash('message', "You don't have permission to delete this comment.");
+            session()->flash('alert-class', 'alert-danger');
             return redirect()->route('comments.show', ['id'=> $comment->id]);
         }
     }

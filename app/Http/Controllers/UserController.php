@@ -141,6 +141,7 @@ class UserController extends Controller
             return redirect()->route('posts.index');
         }else{
             session()->flash('message', "You don't have permission to delete this.");
+            session()->flash('alert-class', 'alert-danger');
             return redirect()->route('users.show', ['id'=> $user->id]);
         }
     }

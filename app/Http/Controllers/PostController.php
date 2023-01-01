@@ -49,6 +49,7 @@ class PostController extends Controller
             return view('posts.create');
         }else{
             session()->flash('message', 'You do not have permission to create posts.');
+            session()->flash('alert-class', 'alert-danger');
             return redirect()->route('posts.index');
         }
     }
@@ -112,6 +113,7 @@ class PostController extends Controller
             return view('posts.edit', ['post' => $post]);
         }else{
             session()->flash('message', "You don't have permission to edit this post.");
+            session()->flash('alert-class', 'alert-danger');
             return redirect()->route('posts.show', ['id'=> $post->id]);
         }
     }
@@ -174,6 +176,7 @@ class PostController extends Controller
             return redirect()->route('posts.index');
         }else{
             session()->flash('message', 'You do not have permission to delete this post.');
+            session()->flash('alert-class', 'alert-danger');
             return redirect()->route('posts.show', ['id'=> $post->id]);
         }
     }

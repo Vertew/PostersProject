@@ -36,7 +36,7 @@ Route::post('/users', [UserController::class, 'store']) -> name('users.store');
 
 Route::get('/users/{id}', [UserController::class, 'show']) -> name('users.show') -> middleware('auth');
 
-Route::get('/users/notifications/{id}', [UserController::class, 'notifications']) -> name('users.notifications');
+Route::get('/users/notifications/{id}', [UserController::class, 'notifications']) -> name('users.notifications') -> middleware('auth');
 
 Route::get('/users/likes/{id}', [UserController::class, 'likes']) -> name('users.likes') -> middleware('auth');
 

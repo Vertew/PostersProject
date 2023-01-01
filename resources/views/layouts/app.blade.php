@@ -57,7 +57,7 @@
         @endif
 
         @if (session('message'))
-            <div class="alert alert-success mt-3 container-md">
+            <div class="alert alert {{ session('alert-class', 'alert-success') }} mt-3 container-md">
                 <p><strong>{{session('message')}}</strong></p>
             </div>
         @endif

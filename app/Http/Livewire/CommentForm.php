@@ -54,6 +54,7 @@ class CommentForm extends Component
 
         }else{
             session()->flash('message', 'You do not have permission to post a comment.');
+            session()->flash('alert-class', 'alert-danger');
             return redirect()->route('posts.show', ['id'=> $this->post->id]);
         }
 
