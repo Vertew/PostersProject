@@ -98,7 +98,7 @@ class ProfileController extends Controller
         $ip = fake()->ipv4();
 
         if($request['location']){
-            // Service container used for my IP_Locator class which communicates with IPinfo.
+            // Using IP_Locator via dependency injection handled by service container.
             $ip_location = $ip_locator->locate($ip);
             $city= $ip_location->city();
             $country= $ip_location->country();
